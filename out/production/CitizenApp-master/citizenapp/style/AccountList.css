@@ -1,0 +1,6 @@
+.box {
+	-fx-background-color: transparent; 
+	-fx-border-color: #bababa;
+	-fx-border-width: 0px 0px 1px 0px;	
+	padding: 10px 0px 10px 0px;
+}

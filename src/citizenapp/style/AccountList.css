@@ -1,0 +1,21 @@
+.box {
+	-fx-background-color: transparent; 
+	-fx-border-color: #bababa;
+	-fx-border-width: 0px 0px 1px 0px;	
+	
+}
+
+.box:hover {
+	-fx-background-color: transparent; 
+	-fx-border-color: #fcba03;
+        -fx-effect: dropshadow(three-pass-box, #ebbc13, 5, 0, 0, 0);
+	-fx-border-width: 0px 0px 1px 0px;	
+	-fx-padding: 5px 0px 5px 0px;
+        -fx-font-size: 30px;
+        
+}
+
+
+/*.box:hover .text{
+	-fx-effect: dropshadow(three-pass-box, white, 5, 0, 0 ,0);
+}*/

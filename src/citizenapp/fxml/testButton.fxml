@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="citizenapp.fxml.TestButtonController">
+   <children>
+      <ComboBox layoutX="450.0" layoutY="1.0" prefWidth="150.0" />
+      <ColorPicker layoutY="1.0" />
+      <ChoiceBox layoutX="137.0" layoutY="1.0" prefWidth="150.0" />
+      <DatePicker layoutY="112.0" />
+      <Hyperlink layoutX="198.0" layoutY="113.0" text="Hyperlink" />
+      <Label layoutX="50.0" layoutY="40.0" text="Color Picker" />
+      <Label layoutX="197.0" layoutY="40.0" text="ChoiceBox" />
+      <Label layoutX="494.0" layoutY="40.0" text="ComboBox" />
+      <ListView layoutX="273.0" layoutY="112.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="343.0" layoutY="89.0" text="ListView" />
+      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="37.0" layoutY="175.0" />
+      <Label layoutX="86.0" layoutY="148.0" text="Media View" />
+   </children>
+</AnchorPane>

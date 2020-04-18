@@ -1,0 +1,41 @@
+.scroll-bar .track{
+	-fx-fill: transparent;	
+	-fx-stroke-width: 1;
+	-fx-stroke: -c-dark-glass;
+	-fx-arc-width: 30px;
+	-fx-arc-height: 30px;
+}
+
+.scroll-bar {
+	-fx-background-color: transparent;
+	
+}
+
+.scroll-pane {
+	-fx-font-family: "MV Boli";
+	-fx-font-size: 16;
+}
+
+.scroll-bar:vertical .thumb {
+	-fx-background-color : derive(black,90.0%);
+    	-fx-background-insets : 2.0, 0.0, 0.0;
+    	-fx-background-radius : 2.0em;
+}
+.scroll-bar:vertical .thumb:hover {
+	-fx-background-color :	derive(#4D4C4F,10.0%);
+    	-fx-background-insets : 2.0, 0.0, 0.0;
+    	-fx-background-radius : 2.0em;
+}
+
+.list-view,
+.scroll-pane,
+.scroll-pane > .viewport {
+	-fx-background-color :transparent;
+}
+
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";    
+    -fx-padding : 0.0 0.15em 0.0 0.15em;
+}

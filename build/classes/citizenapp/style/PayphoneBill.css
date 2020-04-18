@@ -1,0 +1,34 @@
+
+
+
+
+.button {
+    -fx-background-radius: 7em;
+    -fx-min-width: 150px;
+    -fx-min-height: 150px;
+    -fx-max-width: 150px;
+    -fx-max-height: 150px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 7em; 
+    
+}
+
+.button .text {
+    -fx-fill: #2e2c29;
+    -fx-font-family: "Montserrat"; 
+    -fx-font-size: 16;
+    /*-fx-effect: dropshadow(three-pass-box, whitesmoke, 5, 0, 0 ,0);*/
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(from 35% 35% to 100% 100%, #A49295, #d9c59e);
+    -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0 ,0);
+    -fx-border-color: white;
+    
+}
+
+.button:hover .text{
+    
+    -fx-fill: whitesmoke;
+}
