@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -47,6 +48,7 @@ public class SuccessWithDraw {
 	private static int number1;
 	
 	public static void display(int number, String firstName,String lastName, String accNum, double totalAmount, double withdraw) throws FileNotFoundException {
+		AnchorPane mainPane = new AnchorPane();
 		number1 = number;
 		totalMoney = totalAmount - withdraw;
 		firstName1 = firstName;
@@ -99,6 +101,17 @@ public class SuccessWithDraw {
 		
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().addAll(correctImg, t1,t2,t3,t4,t5);
+		
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(25);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
 
 		Scene scene = new Scene(vbox, 400, 300);
 		window.setScene(scene);

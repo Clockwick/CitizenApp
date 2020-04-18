@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Date;
 import java.util.Locale;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
 /**
@@ -37,6 +38,7 @@ public class SuccessPayphone {
 
 	
 	public static void display(int number, double cost, String otherPhoneNum) throws FileNotFoundException, Exception {
+		AnchorPane mainPane = new AnchorPane();
 		UserData sender = CompleteHeader.getUser1();
 		UserData receiver = LoginForm.getUserkey().getUserData(LoginForm.getUserkey().key.get(WhichAccount.getQ()).getId());
 		System.out.println(receiver.toString());
@@ -85,6 +87,16 @@ public class SuccessPayphone {
 		vbox.getChildren().addAll(correctImg, t1, finishBtn);
 		vbox.setAlignment(Pos.CENTER);
 		
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(25);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(vbox, 400, 300);
 		stage.setScene(scene);
 		stage.setTitle("Successful Pay Phone Bills");

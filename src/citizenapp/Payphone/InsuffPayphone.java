@@ -6,6 +6,7 @@
 package citizenapp.Payphone;
 
 
+import citizenapp.Module.CompleteHeader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,6 +30,7 @@ import javafx.stage.Stage;
 public class InsuffPayphone {
 	
 	public static void display() throws FileNotFoundException {
+		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
 		stage.setOnCloseRequest(e -> stage.close());
 		try {
@@ -58,8 +61,17 @@ public class InsuffPayphone {
 		
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().addAll(incorrectImg, t1,t2, finishBtn);
-
-		Scene scene = new Scene(vbox, 400, 300);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(25);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
 		stage.setTitle("Insufficient Funds");
 		stage.show();

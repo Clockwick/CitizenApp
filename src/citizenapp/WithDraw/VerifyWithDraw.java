@@ -6,6 +6,7 @@
 package citizenapp.WithDraw;
 
 import citizenapp.Module.CompleteHeader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -39,9 +43,12 @@ public class VerifyWithDraw {
 	private static double totalMoney1;
 	private static boolean isShutDown = false;
 	private static Stage stage1;
+	
+	private final static String css = VerifyWithDraw.class.getResource("../style/darkbutton.css").toExternalForm();
 
 	public static void display(int number, String firstName, String lastName, String accNum, double totalMoney, double withdraw) throws FileNotFoundException {
 		
+		AnchorPane mainPane = new AnchorPane();
 		countdownLabel.setText("Times : " + seconds);
 		firstName1 = firstName;
 		accNum1 = accNum;
@@ -103,9 +110,19 @@ public class VerifyWithDraw {
 
 		//Vbox
 		vbox.getChildren().addAll(t1, otp, l1, countdownLabel, finishBtn);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(25);
 		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		mainPane.getStylesheets().add(css);
 		//Scene 
-		Scene scene = new Scene(vbox, 400, 300);
+		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
 		window.setTitle("Verify");
 		window.show();

@@ -5,6 +5,7 @@
  */
 package citizenapp.WithDraw;
 
+import citizenapp.Module.CompleteHeader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
@@ -12,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,7 +28,7 @@ import javafx.stage.Stage;
 public class InsufficientWithDraw {
 	public static void display(String firstName, String accNum, double totalAmount) throws FileNotFoundException {
 
-		
+		AnchorPane mainPane = new AnchorPane();
 		//Stage
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -46,18 +48,29 @@ public class InsufficientWithDraw {
 		t2.setFont(Font.font("FreesiaUPC", 22));
 		t3.setFont(Font.font("FreesiaUPC", 22));
 		t5.setFont(Font.font("FreesiaUPC", 22));
-		
-//		Button finishbtn = new Button("Finish");
-		
-		VBox.setMargin(t1, new Insets(-20,0,0,0));
-		
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().addAll(incorrectImg, t1,t2,t3,t5);
 
-		Scene scene = new Scene(vbox, 400, 300);
+//		Button finishbtn = new Button("Finish");
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(38);
+		vbox.setLayoutY(25);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		VBox.setMargin(t1, new Insets(-20,0,0,0));
+		
+		
+		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
 		window.setTitle("Insufficient Balance");
 		window.showAndWait();
+		
+		
 			
 		
 	}

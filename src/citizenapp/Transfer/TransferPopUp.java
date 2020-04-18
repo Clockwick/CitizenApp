@@ -106,7 +106,7 @@ public class TransferPopUp {
 						}
 					}
 					if (i == LoginForm.getUserkey().key.size()) {
-						System.out.println("User no found");
+						NotFoundUserTransfer.display();
 					}
 				} else {
 					FailTransfer.display();

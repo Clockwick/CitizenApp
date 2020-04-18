@@ -9,6 +9,8 @@ import citizenapp.Payphone.Account.IncorrentPassword;
 import citizenapp.Payphone.Account.WhichAccount;
 import citizenapp.Payphone.otherPhone;
 import database.UserData;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -19,6 +21,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -36,10 +41,13 @@ import javafx.stage.Stage;
 /**
  *
  * @author arthris
+ * 
+ * 
  */
+
 public class AccountCheck  implements EventHandler<ActionEvent>{
 	
-	
+	private static final String css = AccountCheck.class.getResource("style/darkbutton.css").toExternalForm();
 	private static double balance;
 	private static Account ownAccount;
 	
@@ -63,7 +71,7 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public static void display(int number,String firstName, String lastName, String accNum1, double money) {
+	public static void display(int number,String firstName, String lastName, String accNum1, double money) throws FileNotFoundException {
 		Stage stage = new Stage();
 		balance = money;	
 		UserData receiver = LoginForm.getUserkey().getUserData(LoginForm.getUserkey().key.get(WhichAccount.getQ()).getId());
@@ -71,6 +79,8 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 		try {
 			stage.initModality(Modality.APPLICATION_MODAL);
 		} catch (Exception ex) {}
+		
+		AnchorPane mainPane = new AnchorPane();
 		
 		Text account = new Text("Account");
 		VBox vbox = new VBox(20);
@@ -83,12 +93,18 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 		password.setFont(Font.font("Segoe UI", 16));
 		PasswordField passwordInput = new PasswordField();		
 		passwordInput.setPromptText("Enter your password");
+		passwordInput.setStyle("-fx-border-color: white;-fx-border-radius: 15px;-fx-background-color: transparent; -fx-text-fill: white;");			
+
 		HBox hbox = new HBox(5);
 		hbox.setAlignment(Pos.CENTER);
 		hbox.getChildren().addAll(password, passwordInput);
 		HBox hbox1 = new HBox(10);
 		hbox1.setAlignment(Pos.CENTER);
-		Button confirmBtn = new Button("Confirm");
+		Text t1 = new Text("Confirm");
+		t1.getStyleClass().add("text");
+		Button confirmBtn = new Button();
+		confirmBtn.getStylesheets().add(css);
+		confirmBtn.setGraphic(t1);
 		confirmBtn.setOnAction(e -> {
 			try {
 				String pwS = passwordInput.getText();
@@ -130,17 +146,28 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 		stage.setOnCloseRequest(event -> {
 			stage.close();
 		});
-		
-		Button cancelBtn = new Button("Cancel");
+		Text t2 = new Text("Cancel");
+		t2.getStyleClass().add("text");
+		Button cancelBtn = new Button();
+		cancelBtn.getStylesheets().add(css);
+		cancelBtn.setGraphic(t2);
 		cancelBtn.setOnAction(e -> {
 			stage.close();
 		});
 		hbox1.getChildren().addAll(confirmBtn, cancelBtn);
-		VBox.setMargin(account, new Insets(0,0,20,0));
+		VBox.setMargin(account, new Insets(0,0,0,0));
 		vbox.getChildren().addAll(account, nameOfAccount, accountNo, hbox, hbox1);
 		vbox.setAlignment(Pos.CENTER);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(350);
 		
-		Scene scene = new Scene(vbox, 400, 300);
+		vbox.setLayoutX(80);
+		vbox.setLayoutY(30);
+		mainPane.getChildren().addAll(mainBg, vbox);
+		Scene scene = new Scene(mainPane, 400, 350);
 		stage.setScene(scene);
 		stage.setTitle("Account");
 		stage.show();

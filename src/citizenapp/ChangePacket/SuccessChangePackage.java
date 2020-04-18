@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -53,6 +54,8 @@ public class SuccessChangePackage {
 		gb1 = gb;
 		minute1 = minute;
 		
+		
+		AnchorPane mainPane = new AnchorPane();
 		try {
 			stage.initModality(Modality.APPLICATION_MODAL);
 		} catch (Exception e) {}
@@ -114,8 +117,19 @@ public class SuccessChangePackage {
 		vbox.setPadding(new Insets(-20,0,0,0));
 		vbox.getChildren().addAll(correctImg, t1, t2, finishBtn);
 		vbox.setAlignment(Pos.CENTER);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(25);
 		
-		Scene scene = new Scene(vbox, 400, 300);
+		mainPane.getChildren().addAll(mainBg, vbox);
+		
+		
+		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
 		stage.setTitle("Successful Change Package");
 		stage.show();

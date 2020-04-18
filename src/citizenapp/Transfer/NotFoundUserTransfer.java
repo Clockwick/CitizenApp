@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package citizenapp.Payphone;
+package citizenapp.Transfer;
 
 import citizenapp.Module.CompleteHeader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,50 +24,29 @@ import javafx.stage.Stage;
  *
  * @author arthris
  */
-public class PayAlready {
-	
-	private static boolean me;
-
-	public static boolean isMe() {
-		return me;
-	}
-
-	public static void setMe(boolean me) {
-		PayAlready.me = me;
-	}
+public class NotFoundUserTransfer {
 	
 	public static void display() throws FileNotFoundException {
-		
 		AnchorPane mainPane = new AnchorPane();
-		Stage stage = new Stage();
-		stage.setOnCloseRequest(e -> stage.close());
-		stage.initModality(Modality.APPLICATION_MODAL);
+		//Stage
+		Stage window = new Stage();
+		window.initModality(Modality.APPLICATION_MODAL);
 		
 		VBox vbox = new VBox(20);
 
-//		//Correct Image
+////		//Correct Image
 		Image incorrectPic = new Image(new FileInputStream("src/citizenapp/img/incorrect.png"));
 		ImageView incorrectImg = new ImageView();
 		incorrectImg.setImage(incorrectPic);
 
-		Text t1;
-		if (me) {
-			t1 = new Text("You have paid bill for this month already.");
-		} else {
-			t1 = new Text("This phoneNumber have paid bill for this month already.");
-		}
+		Text t1 = new Text("The Transfer was unsuccessful");
+		Text t2 = new Text("due to the account number doesn't exist");
 		
 		t1.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
-		
-		Button finishBtn = new Button("Finish");
-		finishBtn.setOnAction(e -> {
-			e.consume();
-			stage.close();
-		});
+		t2.setFont(Font.font("FreesiaUPC", 22));
 		
 		vbox.setAlignment(Pos.CENTER);
-		vbox.getChildren().addAll(incorrectImg, t1 , finishBtn);
-
+		vbox.getChildren().addAll(incorrectImg, t1,t2);
 		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
 		ImageView mainBg = new ImageView();
 		mainBg.setImage(img1);
@@ -80,10 +58,9 @@ public class PayAlready {
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);
-		stage.setScene(scene);
-		stage.setTitle("You have paid for this month already");
-		stage.show();
+		window.setScene(scene);
+		window.setTitle("Account doesn't exist");
+		window.showAndWait();
+		
 	}
-	
-	
 }
