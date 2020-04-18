@@ -1,12 +1,6 @@
 package citizenapp.Module;
 
-import citizenapp.Account;
-import citizenapp.AccountCheck;
-import citizenapp.AccountList;
-import citizenapp.FirstPage;
-import citizenapp.History;
-import citizenapp.HomeInfo;
-import citizenapp.PhoneInfo;
+import citizenapp.*;
 import database.UserData;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -158,9 +153,7 @@ public class CompleteHeader {
 		CompleteHeader.historyScene = historyScene;
 	}
 
-	public static void setHis(History his) {
-		CompleteHeader.his = his;
-	}
+
 
 	public static void setUser1(UserData user1) {
 		CompleteHeader.user1 = user1;
@@ -276,9 +269,7 @@ public class CompleteHeader {
 		return historyScene;
 	}
 
-	public static History getHis() {
-		return his;
-	}
+
 
 	
 	private HBox navBar = new HBox();
@@ -298,7 +289,10 @@ public class CompleteHeader {
 	private static Scene phoneInfoScene;
 	private static Scene historyScene;
 	private static AccountList accountList;
-	private static History his;
+	private static DropShadow hoverIconEffect = new DropShadow();
+	private static DropShadow activeIconEffect = new DropShadow();
+			
+	
 	private static UserData user1;
 	
 	private static PhoneInfo phoneObj;
@@ -358,6 +352,17 @@ public class CompleteHeader {
 		stage1.setScene(HomeInfoScene);
 		stage1.setX(440);
 		stage1.setY(140);
+		
+		//Set effect
+		hoverIconEffect.setWidth(15);
+		hoverIconEffect.setHeight(15);
+		hoverIconEffect.setRadius(5.0);
+		hoverIconEffect.setColor(Color.WHITESMOKE);
+		
+		activeIconEffect.setWidth(15);
+		activeIconEffect.setHeight(15);
+		activeIconEffect.setRadius(5.0);
+		activeIconEffect.setColor(Color.GREY);
 	}
 
 	public static PhoneInfo getPhoneObj() {
@@ -410,26 +415,65 @@ public class CompleteHeader {
 		
 		//Home
 		TextWithIcon homeIcon = new TextWithIcon("Home", "Home.png");
+		homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			homeIcon.getText().setEffect(hoverIconEffect);
+			homeIcon.getImage().setEffect(hoverIconEffect);
+		});
+		homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			homeIcon.getText().setEffect(null);
+			homeIcon.getImage().setEffect(null);
+		});
 		homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
 			event.consume();
 //			System.out.println(user1.toString());
+			homeIcon.getText().setEffect(activeIconEffect);
+			homeIcon.getImage().setEffect(activeIconEffect);
 			stage1.setScene(HomeInfoScene);
 			stage1.setX(stage1.getX());
 			stage1.setY(stage1.getY());
 		});
 		//Phone
 		TextWithIcon phoneIcon = new TextWithIcon("Phone", "Phone.png");
+		phoneIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			phoneIcon.getText().setEffect(hoverIconEffect);
+			phoneIcon.getImage().setEffect(hoverIconEffect);
+		});
+		phoneIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			phoneIcon.getText().setEffect(null);
+			phoneIcon.getImage().setEffect(null);
+		});
 		phoneIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
 			event.consume();
 //			System.out.println(user1.toString());
+			phoneIcon.getText().setEffect(activeIconEffect);
+			phoneIcon.getImage().setEffect(activeIconEffect);
 			stage1.setScene(PhoneInfo.getScene());
 			stage1.setX(stage1.getX());
 			stage1.setY(stage1.getY());
 		});
 		//Bank
 		TextWithIcon bankIcon = new TextWithIcon("Bank", "Bank.png");
+		bankIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			bankIcon.getText().setEffect(hoverIconEffect);
+			bankIcon.getImage().setEffect(hoverIconEffect);
+		});
+		bankIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			bankIcon.getText().setEffect(null);
+			bankIcon.getImage().setEffect(null);
+		});
 		bankIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
 			event.consume();
+			bankIcon.getText().setEffect(activeIconEffect);
+			bankIcon.getImage().setEffect(activeIconEffect);
 //			System.out.println(user1.toString());
 //			System.out.println("User account size : " + CompleteHeader.getUser1().getAccountList().size());
 //			System.out.println("Current account size : " + Account.getAccountList().size());
@@ -453,9 +497,23 @@ public class CompleteHeader {
 		});
 		//History
 		TextWithIcon historyIcon = new TextWithIcon("History", "Bookmark.png");
+		historyIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			historyIcon.getText().setEffect(hoverIconEffect);
+			historyIcon.getImage().setEffect(hoverIconEffect);
+		});
+		historyIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			historyIcon.getText().setEffect(null);
+			historyIcon.getImage().setEffect(null);
+		});
+		
 		historyIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
 			event.consume();
-			System.out.println(user1.toString());
+//			System.out.println(user1.toString());
+			historyIcon.getText().setEffect(activeIconEffect);
+			historyIcon.getImage().setEffect(activeIconEffect);
 			try {
 				History.start();
 			} catch (Exception ex) {
@@ -467,6 +525,17 @@ public class CompleteHeader {
 		});
 		//Setting
 		TextWithIcon settingIcon = new TextWithIcon("Setting", "Setting.png");
+		settingIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			settingIcon.getText().setEffect(hoverIconEffect);
+			settingIcon.getImage().setEffect(hoverIconEffect);
+		});
+		settingIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			settingIcon.getText().setEffect(null);
+			historyIcon.getImage().setEffect(null);
+		});
 
 		//Top HBox
 		HBox hbox = new HBox(20);
@@ -495,13 +564,24 @@ public class CompleteHeader {
 		topRightBox.setLayoutY(10);
 		topRightBox.setPadding(new Insets(0,100,0,0));
 		topRightBox.getChildren().addAll(logoutIcon.active());
-		TextWithIcon historyIcon = new TextWithIcon("History", "Bookmark.png");
+		logoutIcon.getHbox().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent event) -> {
+			event.consume();
+			
+			logoutIcon.getText().setEffect(hoverIconEffect);
+			logoutIcon.getImage().setEffect(hoverIconEffect);
+		});
+		logoutIcon.getHbox().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent event) -> {
+			event.consume();
+			logoutIcon.getText().setEffect(null);
+			logoutIcon.getImage().setEffect(null);
+		});
 		logoutIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
 			event.consume();
 			try {
 				AccountList.getVBox1().getChildren().clear();
 				Account.getAccountList().clear();
 				Account.getAccountBox().clear();
+//				CompleteHeader.getUser1().setLogListInUserData(Log.getLogList());
 				user1.WriteData("src/database/" + user1.getId());
 				FirstPage f1 = new FirstPage();
 				f1.start(stage1);

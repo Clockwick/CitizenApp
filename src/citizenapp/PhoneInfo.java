@@ -134,7 +134,11 @@ public class PhoneInfo {
 		paybillBtn.setGraphic(textInPayBill);
 		
 		paybillBtn.setOnAction(e -> {
-			PayphoneBill.display(phoneNumberS, balance, prices);
+			try {
+				PayphoneBill.display(phoneNumberS, balance, prices);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(PhoneInfo.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		});
 		
 		//Change package bill Button
