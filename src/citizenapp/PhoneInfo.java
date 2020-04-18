@@ -10,6 +10,11 @@ import citizenapp.Module.CompleteHeader;
 import citizenapp.Module.LabelPerInput;
 import citizenapp.Payphone.PayphoneBill;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,11 +28,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
@@ -38,7 +47,8 @@ public class PhoneInfo {
 
 
 
-
+	private static final String css = PhoneInfo.class.getResource("style/generalButton.css").toExternalForm();
+	private static final String TEXT = "text";
 	private static Stage window;
 
 	public static Stage getWindow() {
@@ -117,11 +127,21 @@ public class PhoneInfo {
 		LabelPerInput price = new LabelPerInput("Price :", priceS + " baht");
 		LabelPerInput packAge = new LabelPerInput("Package :", packAgeS);
 		double prices = Double.parseDouble(priceS);
-		Button paybillBtn = new Button("Pay phone bills");
+		//Pay phone bill Button
+		Button paybillBtn = new Button();
+		Text textInPayBill = new Text("Pay phone bills");
+		textInPayBill.getStyleClass().add(TEXT);
+		paybillBtn.setGraphic(textInPayBill);
+		
 		paybillBtn.setOnAction(e -> {
 			PayphoneBill.display(phoneNumberS, balance, prices);
 		});
-		Button changePackageBtn = new Button("Change Package");
+		
+		//Change package bill Button
+		Button changePackageBtn = new Button();
+		Text textInChangePackage = new Text("Change package");
+		textInChangePackage.getStyleClass().add(TEXT);
+		changePackageBtn.setGraphic(textInChangePackage);
 		changePackageBtn.setOnAction(e -> {
 			ChangePackage.display();
 		});
@@ -158,7 +178,7 @@ public class PhoneInfo {
 		HBox hbox0 = new HBox();
 		hbox0.getChildren().addAll(vbox1, vbox2);
 		bigVbox.setMargin(t1, new Insets(0,40,0,0));
-		hbox4.setPadding(new Insets(0,0,0,170));
+		hbox4.setPadding(new Insets(0,0,0,110));
 		bigVbox.getChildren().addAll(t1, hbox0, hbox4);
 		bigVbox.setAlignment(Pos.BASELINE_CENTER);
 		
@@ -184,6 +204,7 @@ public class PhoneInfo {
 		secondBg.setOpacity(0.8);
 		
 		mainPane.getChildren().addAll(mainBg, secondBg, CompleteHeader.getLogo(), CompleteHeader.getNavbar(), CompleteHeader.getTopRight(), nameHBox, bigVbox);
+		mainPane.getStylesheets().add(css);
 //		//Scene
 		Scene scene = new Scene(mainPane, 800, 600);
 		this.scene = scene;
