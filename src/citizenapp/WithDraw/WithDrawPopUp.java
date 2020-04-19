@@ -38,6 +38,7 @@ public class WithDrawPopUp implements EventHandler<ActionEvent>{
 
 	public static void display(int number, String firstName, String lastName, String accNum, double money) throws FileNotFoundException {
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		AnchorPane mainPane = new AnchorPane();
 		stage.setOnCloseRequest(e -> stage.close());
 		stage.initModality(Modality.APPLICATION_MODAL);

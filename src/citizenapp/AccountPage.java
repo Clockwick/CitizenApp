@@ -78,6 +78,7 @@ public class AccountPage extends Application implements EventHandler<ActionEvent
 	@Override
 	public void start(Stage stage) throws Exception {
 		window = stage;
+		window.setResizable(false);
 		HBox nameHBox = new HBox();
 		Label fullNameLabel = new Label(CompleteHeader.getFullName());
 		fullNameLabel.setTextFill(Color.WHITE);

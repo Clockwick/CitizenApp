@@ -55,7 +55,10 @@ public class SuccessWithDraw {
 		lastName1 = lastName;
 		accNum1 = accNum;
 		//Stage
-//		window.initModality(Modality.APPLICATION_MODAL);
+		
+		window.initModality(Modality.APPLICATION_MODAL);
+		
+		
 		window.setOnCloseRequest(e -> {
 			try {
 				e.consume();
@@ -85,9 +88,9 @@ public class SuccessWithDraw {
 
 		Text t1 = new Text("Successful withdrawing of money");
 		Text t2 = new Text("Name of Account : " + firstName);
-		Text t3 = new Text("Account No. : " + accNum);
-		Text t4 = new Text("Withdrawing money : " + totalAmount);
-		Text t5 = new Text("Total money : " + String.format("%.2f", totalMoney));
+		Text t3 = new Text("Account No." + accNum);
+		Text t4 = new Text("Withdrawing money : " + totalAmount + " baht");
+		Text t5 = new Text("Total money : " + String.format("%.2f", totalMoney) + " baht");
 		t1.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
 		t2.setFont(Font.font("FreesiaUPC", 22));
 		t3.setFont(Font.font("FreesiaUPC", 22));
@@ -108,8 +111,8 @@ public class SuccessWithDraw {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
-		vbox.setLayoutY(25);
+		vbox.setLayoutX(82);
+		vbox.setLayoutY(5);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 

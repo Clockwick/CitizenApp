@@ -18,9 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -47,6 +44,7 @@ public class PayphoneBill {
 	public static void display(String phoneNumber, double balance, double cost) throws FileNotFoundException {
 		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		phoneNumberS = phoneNumber;
 		stage.setOnCloseRequest(e -> {
 			e.consume();
@@ -106,7 +104,7 @@ public class PayphoneBill {
 		vbox.getChildren().addAll(t1,hbox);
 		vbox.setAlignment(Pos.CENTER);
 //		vbox.setBackground(background);
-		vbox.setLayoutX(50);
+		vbox.setLayoutX(42);
 		vbox.setLayoutY(30);
 
 		mainPane.getChildren().addAll(mainBg, vbox);

@@ -31,6 +31,7 @@ public class InsufficientWithDraw {
 		AnchorPane mainPane = new AnchorPane();
 		//Stage
 		Stage window = new Stage();
+		window.setResizable(false);
 		window.initModality(Modality.APPLICATION_MODAL);
 		
 		VBox vbox = new VBox(20);
@@ -42,8 +43,8 @@ public class InsufficientWithDraw {
 
 		Text t1 = new Text("You have insufficeint funds for the transaction");
 		Text t2 = new Text("Name of Account : " + firstName);
-		Text t3 = new Text("Account No. : " + accNum);
-		Text t5 = new Text("Balance : " + String.format("%.2f", totalAmount));
+		Text t3 = new Text("Account No." + accNum + " baht");
+		Text t5 = new Text("Balance : " + String.format("%.2f", totalAmount) + " baht");
 		t1.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
 		t2.setFont(Font.font("FreesiaUPC", 22));
 		t3.setFont(Font.font("FreesiaUPC", 22));

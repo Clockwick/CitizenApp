@@ -46,6 +46,7 @@ public class LoginForm {
 		AnchorPane mainPane = new AnchorPane();
 		
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		try {
 			stage.initModality(Modality.APPLICATION_MODAL);
 		} catch (Exception e) {}
@@ -133,6 +134,7 @@ public class LoginForm {
 					completeLoginBox.getChildren().remove(loginBtn);
 					completeLoginBox.getChildren().addAll(wrong, loginBtn);
 				} 
+				
 				
 			}
 		});

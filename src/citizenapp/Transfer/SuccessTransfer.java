@@ -49,6 +49,7 @@ public class SuccessTransfer {
 public static void display(int number, String firstName, String lastName, String accNum, String accNumTransfer,double totalAmount, double transfer) throws FileNotFoundException {
 	
 		AnchorPane mainPane = new AnchorPane();
+		window.setResizable(false);
 		//Stage
 		number1 = number;
 		totalMoney = totalAmount - transfer;
@@ -111,11 +112,11 @@ public static void display(int number, String firstName, String lastName, String
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
+		vbox.setLayoutX(95);
 		vbox.setLayoutY(25);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
-		Scene scene = new Scene(vbox, 400, 300);
+		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
 		window.setTitle("Success Transfering");
 		window.show();

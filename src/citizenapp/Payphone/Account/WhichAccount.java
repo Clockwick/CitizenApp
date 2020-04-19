@@ -55,6 +55,7 @@ public class WhichAccount {
 	
 	public static void display() throws FileNotFoundException, Exception {
 		//close before this page
+		window.setResizable(false);
 		 window.setOnCloseRequest(e -> {
 			window.close();
 		 });
@@ -64,9 +65,9 @@ public class WhichAccount {
 		 mainPane.setPrefWidth(600);
 		 mainPane.setPrefWidth(450);
 		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setLayoutX(100.0);
+		scrollPane.setLayoutX(90.0);
 		scrollPane.setLayoutY(181.25);
-		scrollPane.setPrefWidth(460);
+		scrollPane.setPrefWidth(440);
 		scrollPane.setPrefHeight(95);
 		scrollPane.getStyleClass().add(SCROLL);
 		scrollPane.getStylesheets().add(css);
@@ -83,7 +84,7 @@ public class WhichAccount {
 		for (int i = 0; i < Account.getAccountBox().size(); i++) {
 			Account.getAccountList().get(i).getNameText().setFont(Font.font("Neucha", 18));
 			Account.getAccountList().get(i).getAccNumText().setFont(Font.font("Neucha", 18));
-			Account.getAccountBox().get(i).setPrefWidth(450);
+			Account.getAccountBox().get(i).setPrefWidth(432);
 			Account.getAccountList().get(i).getNameText().setWrappingWidth(260);
 			vbox.getChildren().add(Account.getAccountBox().get(i));
 		}
@@ -129,9 +130,9 @@ public class WhichAccount {
 		 mainPane.setPrefWidth(600);
 		 mainPane.setPrefWidth(450);
 		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setLayoutX(140.0);
+		scrollPane.setLayoutX(90.0);
 		scrollPane.setLayoutY(181.25);
-		scrollPane.setPrefWidth(430);
+		scrollPane.setPrefWidth(440);
 		scrollPane.setPrefHeight(95);
 		scrollPane.getStyleClass().add(SCROLL);
 		scrollPane.getStylesheets().add(css);
@@ -149,8 +150,8 @@ public class WhichAccount {
 		for (int i = 0; i < Account.getAccountBox().size(); i++) {
 			Account.getAccountList().get(i).getNameText().setFont(Font.font("Neucha", 18));
 			Account.getAccountList().get(i).getAccNumText().setFont(Font.font("Neucha", 18));
-			Account.getAccountBox().get(i).setPrefWidth(350);
-			Account.getAccountList().get(i).getNameText().setWrappingWidth(220);
+			Account.getAccountBox().get(i).setPrefWidth(432);
+			Account.getAccountList().get(i).getNameText().setWrappingWidth(260);
 			vbox.getChildren().add(Account.getAccountBox().get(i));
 		}
 		

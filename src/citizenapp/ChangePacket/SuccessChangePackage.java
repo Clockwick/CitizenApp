@@ -7,17 +7,12 @@ package citizenapp.ChangePacket;
 
 import citizenapp.Log;
 import citizenapp.Module.CompleteHeader;
-import citizenapp.Module.LoginForm;
-import citizenapp.Payphone.Account.WhichAccount;
 import citizenapp.PhoneInfo;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -48,6 +43,7 @@ public class SuccessChangePackage {
 	private static String price1 ;
 	private static String minute1 ;
 	private static String gb1 ;
+	private static final String css = SuccessChangePackage.class.getResource("../style/darkbutton.css").toExternalForm();
 	
 	public static void display(String packAge, String price, String gb, String minute) throws FileNotFoundException {
 		price1 = price;
@@ -114,7 +110,7 @@ public class SuccessChangePackage {
 			}
 
 		});
-		vbox.setPadding(new Insets(-20,0,0,0));
+		VBox.setMargin(t1, new Insets(-30,0,0,0));
 		vbox.getChildren().addAll(correctImg, t1, t2, finishBtn);
 		vbox.setAlignment(Pos.CENTER);
 		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
@@ -123,8 +119,10 @@ public class SuccessChangePackage {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
-		vbox.setLayoutY(25);
+		vbox.setLayoutX(87);
+		vbox.setLayoutY(-10);
+		
+		vbox.getStylesheets().add(css);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		

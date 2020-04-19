@@ -75,7 +75,7 @@ public static ArrayList<HBox> getAccountBox() {
 		hbox.setPrefHeight(19.0);
 		hbox.setMinWidth(Control.USE_PREF_SIZE);
 		hbox.setMaxWidth(Control.USE_PREF_SIZE);
-		hbox.setPrefWidth(520.0);
+		hbox.setPrefWidth(500.0);
 //		System.out.println(CompleteHeader.getUser1().getAccountList().get(getNumber()).getBalance());
 		hbox.getStylesheets().add(css);
 		hbox.getStyleClass().add(BOX_STYLE);

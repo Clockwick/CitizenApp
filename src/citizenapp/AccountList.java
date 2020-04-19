@@ -63,6 +63,7 @@ public class AccountList implements EventHandler<ActionEvent>{
 	}
 
 	public void start() throws Exception {
+		
 		VBox vbox = new VBox(20);
 		vbox1= vbox;
 		//Set-Up

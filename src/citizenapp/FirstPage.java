@@ -41,7 +41,7 @@ public class FirstPage implements EventHandler<ActionEvent>{
 	
 	public void start(Stage stage) throws Exception {
 		window = stage;
-		
+		window.setResizable(false);
 		AnchorPane anchorPane = new AnchorPane();
 		anchorPane.setPrefHeight(600);
 		anchorPane.setPrefWidth(800);

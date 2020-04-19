@@ -28,11 +28,12 @@ import javafx.stage.Stage;
  */
 public class NoExistPayphone {
 	
-	
+	private static final String css = PayAlready.class.getResource("../style/darkbutton.css").toExternalForm();
 	public static void display() throws FileNotFoundException {
 		
 		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.setOnCloseRequest(e -> stage.close());
 		stage.initModality(Modality.APPLICATION_MODAL);
 		
@@ -63,13 +64,14 @@ public class NoExistPayphone {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
+		vbox.setLayoutX(35);
 		vbox.setLayoutY(25);
+		vbox.getStylesheets().add(css);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
-		stage.setTitle("Insufficient Funds");
+		stage.setTitle("Not Exist Phone Number");
 		stage.show();
 	}
 	

@@ -43,6 +43,7 @@ public class SuccessPayphone {
 		UserData receiver = LoginForm.getUserkey().getUserData(LoginForm.getUserkey().key.get(WhichAccount.getQ()).getId());
 		System.out.println(receiver.toString());
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		//Date
 		Locale locale = new Locale("en", "TH");

@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 public class PayAlready {
 	
 	private static boolean me;
+	private static final String css = PayAlready.class.getResource("../style/darkbutton.css").toExternalForm();
 
 	public static boolean isMe() {
 		return me;
@@ -41,6 +43,7 @@ public class PayAlready {
 		
 		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.setOnCloseRequest(e -> stage.close());
 		stage.initModality(Modality.APPLICATION_MODAL);
 		
@@ -57,7 +60,8 @@ public class PayAlready {
 		} else {
 			t1 = new Text("This phoneNumber have paid bill for this month already.");
 		}
-		
+		t1.setWrappingWidth(250);
+		t1.setTextAlignment(TextAlignment.CENTER);
 		t1.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
 		
 		Button finishBtn = new Button("Finish");
@@ -75,13 +79,14 @@ public class PayAlready {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
+		vbox.setLayoutX(70);
 		vbox.setLayoutY(25);
+		vbox.getStylesheets().add(css);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
-		stage.setTitle("You have paid for this month already");
+		stage.setTitle("Payment Failed");
 		stage.show();
 	}
 	

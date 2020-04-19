@@ -47,6 +47,7 @@ public class otherPhone {
 
 		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setOnCloseRequest(e -> stage.close());
 		VBox vbox = new VBox(20);

@@ -347,6 +347,7 @@ public class CompleteHeader {
 		setPATH_TO_HUMANPIC(user1.getPicturePath());
 		//Set up info
 		stage1 = stage;
+		stage1.setResizable(false);
 	
 		HomeInfo h1 = new HomeInfo(iden, firstName, surName, gender, nation , dob, relig, addr, doi, doe);
 		HomeInfoScene = h1.getScene();
@@ -493,7 +494,7 @@ public class CompleteHeader {
 					//Set before goto accountList
 					Account.getAccountList().get(i).getNameText().setFont(Font.font("Neucha", 20));
 					Account.getAccountList().get(i).getAccNumText().setFont(Font.font("Neucha", 20));
-					Account.getAccountBox().get(i).setPrefWidth(520);
+					Account.getAccountBox().get(i).setPrefWidth(500);
 					Account.getAccountList().get(i).getNameText().setWrappingWidth(300);
 					AccountList.getVBox1().getChildren().add(Account.getAccountBox().get(i));	
 				}

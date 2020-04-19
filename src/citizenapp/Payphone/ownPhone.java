@@ -41,6 +41,7 @@ public class ownPhone {
 	public static void display(String phoneNumber, double balance, double cost) throws FileNotFoundException  {
 	
 		Stage stage = new Stage();
+		stage.setResizable(false);
 
 		AnchorPane mainPane = new AnchorPane();
 		stage.initModality(Modality.APPLICATION_MODAL);

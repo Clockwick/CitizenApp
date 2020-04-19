@@ -46,7 +46,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		return mainPane;
 	}
 	
-	private Stage window;
+	
 	private Scene scene;
 	
 	

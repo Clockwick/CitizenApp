@@ -29,9 +29,11 @@ import javafx.stage.Stage;
  */
 public class InsuffPayphone {
 	
+	private static final String css = PayphoneBill.class.getResource("../style/darkbutton.css").toExternalForm();
 	public static void display() throws FileNotFoundException {
 		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.setOnCloseRequest(e -> stage.close());
 		try {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -67,8 +69,9 @@ public class InsuffPayphone {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
+		vbox.setLayoutX(55);
 		vbox.setLayoutY(25);
+		vbox.getStylesheets().add(css);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);

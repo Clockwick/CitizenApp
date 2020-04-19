@@ -31,6 +31,8 @@ public class FailWithDraw {
 		AnchorPane mainPane = new AnchorPane();
 		//Stage
 		Stage window = new Stage();
+		window.setResizable(false);
+		
 		window.initModality(Modality.APPLICATION_MODAL);
 		
 		VBox vbox = new VBox(20);
@@ -42,8 +44,8 @@ public class FailWithDraw {
 
 		Text t1 = new Text("You are running out of time");
 		Text t2 = new Text("Name of Account : " + firstName);
-		Text t3 = new Text("Account No." + accNum);
-		Text t5 = new Text("Balance : " + String.format("%.2f", totalAmount));
+		Text t3 = new Text("Account No." + accNum + " baht");
+		Text t5 = new Text("Balance : " + String.format("%.2f", totalAmount) + " baht");
 		t1.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
 		t2.setFont(Font.font("FreesiaUPC", 22));
 		t3.setFont(Font.font("FreesiaUPC", 22));
@@ -62,13 +64,13 @@ public class FailWithDraw {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
+		vbox.setLayoutX(102);
 		vbox.setLayoutY(25);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
-		window.setTitle("Insufficient Balance");
+		window.setTitle("Time out");
 		window.show();
 			
 		

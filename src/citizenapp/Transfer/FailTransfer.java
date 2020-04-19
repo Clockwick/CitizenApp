@@ -30,6 +30,7 @@ public class FailTransfer {
 		AnchorPane mainPane = new AnchorPane();
 		//Stage
 		Stage window = new Stage();
+		window.setResizable(false);
 		window.initModality(Modality.APPLICATION_MODAL);
 		
 		VBox vbox = new VBox(20);
@@ -53,8 +54,8 @@ public class FailTransfer {
 		mainBg.setFitWidth(400);
 		mainBg.setFitHeight(300);
 	
-		vbox.setLayoutX(60);
-		vbox.setLayoutY(25);
+		vbox.setLayoutX(92);
+		vbox.setLayoutY(55);
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 		Scene scene = new Scene(mainPane, 400, 300);

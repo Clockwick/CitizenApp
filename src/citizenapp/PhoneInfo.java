@@ -13,8 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,15 +26,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  *
@@ -49,11 +43,6 @@ public class PhoneInfo {
 
 	private static final String css = PhoneInfo.class.getResource("style/generalButton.css").toExternalForm();
 	private static final String TEXT = "text";
-	private static Stage window;
-
-	public static Stage getWindow() {
-		return window;
-	}
 	private static Scene scene;
 	
 	private String phoneNumberS;
@@ -217,7 +206,5 @@ public class PhoneInfo {
 		return scene;
 	}
 	
-	public static void closeProgram() {
-		window.close();
-	}
+	
 }

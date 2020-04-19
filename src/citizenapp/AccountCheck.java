@@ -5,7 +5,6 @@ import citizenapp.Module.CompleteHeader;
 import citizenapp.Module.LoginForm;
 import citizenapp.Payphone.Account.ConfirmPayBill;
 
-import citizenapp.Payphone.Account.IncorrentPassword;
 import citizenapp.Payphone.Account.WhichAccount;
 import citizenapp.Payphone.otherPhone;
 import database.UserData;
@@ -73,6 +72,7 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 
 	public static void display(int number,String firstName, String lastName, String accNum1, double money) throws FileNotFoundException {
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		balance = money;	
 		UserData receiver = LoginForm.getUserkey().getUserData(LoginForm.getUserkey().key.get(WhichAccount.getQ()).getId());
 		
@@ -86,7 +86,7 @@ public class AccountCheck  implements EventHandler<ActionEvent>{
 		VBox vbox = new VBox(20);
 		account.setFont(Font.font("Ink Free", 33));
 		Text nameOfAccount = new Text("Name of Account: " + firstName + " " + lastName);
-		Text accountNo = new Text("Account No. : " + accNum1);
+		Text accountNo = new Text("Account No." + accNum1);
 		Text password = new Text("Password: ");
 		nameOfAccount.setFont(Font.font("Segoe UI", 16));
 		accountNo.setFont(Font.font("Segoe UI", 16));

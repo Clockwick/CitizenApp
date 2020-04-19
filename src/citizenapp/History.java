@@ -37,7 +37,6 @@ import javafx.stage.Stage;
  */
 public class History {
 
-	private Stage window;
 	private static Scene sceneZ;
 	
 	private final static String css = History.class.getResource("style/ScrollBar.css").toExternalForm();
@@ -48,6 +47,7 @@ public class History {
 		start();
 	}
 	public static void start() throws Exception {
+		
 		HBox nameHBox = new HBox();
 		Label fullNameLabel = new Label(CompleteHeader.getFullName());
 		fullNameLabel.setTextFill(Color.WHITE);
@@ -107,17 +107,7 @@ public class History {
 		noList.setFont(Font.font("Mv Boli", 36));
 		noList.setLayoutX(220);
 		noList.setLayoutY(340);
-//		ScrollBar scrollBar = new ScrollBar();
-//		scrollBar.setMinWidth(Control.USE_PREF_SIZE);
-//		scrollBar.setMinHeight(Control.USE_PREF_SIZE);
-//		scrollBar.setMaxWidth(Control.USE_PREF_SIZE);
-//		scrollBar.setMaxHeight(Control.USE_PREF_SIZE);
-//		scrollBar.setPrefWidth(17);
-//		scrollBar.setPrefHeight(335);
-//		scrollBar.setLayoutX(679);
-//		scrollBar.setLayoutY(180);
-//		scrollBar.setOpacity(0.5);
-//		scrollBar.setVisible(false);
+
 		
 		
 		//Primary Background

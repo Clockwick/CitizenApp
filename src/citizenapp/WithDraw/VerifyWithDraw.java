@@ -60,9 +60,11 @@ public class VerifyWithDraw {
 		stage1.setOnCloseRequest(e -> {
 			isShutDown = true;
 			isCountdown = false;
+			seconds = COUNT;
 			stage1.close();
 			
 		});
+		stage1.setResizable(false);
 		window.initModality(Modality.APPLICATION_MODAL);
 			
 
@@ -94,14 +96,16 @@ public class VerifyWithDraw {
 		finishBtn.setOnAction(e -> {
 			try {	
 				if (leftMoney >= 0 && seconds != 0) {
-					
+					stage1.close();
+					System.out.println("Stage close");
 					SuccessWithDraw.display(number, firstName, lastName, accNum, totalMoney, withdraw);
-					CompleteHeader.setMoney(leftMoney);	
+					CompleteHeader.setMoney(leftMoney);
+					isShutDown = true;
+					isCountdown = false;
+					
 					
 				} 
-				isShutDown = true;
-				isCountdown = false;
-				window.close();
+				
 			} catch (FileNotFoundException ex) {
 				Logger.getLogger(VerifyWithDraw.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -147,6 +151,9 @@ public class VerifyWithDraw {
 					time.stop();	
 					seconds = 0;
 					try {
+						isShutDown = true;
+						isCountdown = false;
+						seconds = COUNT;
 						FailWithDraw.display(firstName1, accNum1, totalMoney1);
 						VerifyWithDraw.getStage().close();
 					} catch (Exception ex) {

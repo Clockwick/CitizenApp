@@ -34,6 +34,7 @@ public class TransferPopUp {
 	
 	public static void display(int number, String firstName, String lastName, String accNum, double money) {
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		Text account = new Text("Transfer");
 		VBox vbox = new VBox(20);
@@ -50,7 +51,7 @@ public class TransferPopUp {
 		TextField toInput = new TextField();
 		toInput.setPromptText("Enter the Account No.");
 		toInput.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-			if (!newValue.matches("\\d{0,13}([\\.]\\d{0,4})?")) {
+			if (!newValue.matches("\\d{0,10}([\\.]\\d{0,4})?")) {
 				toInput.setText(oldValue);
 			}	
 		});
@@ -58,7 +59,7 @@ public class TransferPopUp {
 		TextField amountInput = new TextField();		
 		amountInput.setPromptText("Enter the Amount ");
 		amountInput.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-			if (!newValue.matches("\\d{0,6}([\\.]\\d{0,4})?")) {
+			if (!newValue.matches("\\d{0,7}([\\.]\\d{0,4})?")) {
 				amountInput.setText(oldValue);
 			}
 		});
