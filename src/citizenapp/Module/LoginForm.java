@@ -125,6 +125,7 @@ public class LoginForm {
 				UserkeyList u1 = new UserkeyList("src/database/keylist");
 				userkey = u1;
 				UserData user = u1.Login(userId, pw);
+				user.sortAccountList();
 //				Collections.sort(user.getAccountList(), Account.sortByCountClick);
 				CompleteHeader h1 = new CompleteHeader(stage, user);
 				FirstPage.close();

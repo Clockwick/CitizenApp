@@ -1,0 +1,12 @@
+.round-button {
+	-fx-background-radius: 7em;
+	-fx-min-width: 150px; 
+	-fx-min-height: 150px;
+	-fx-max-width: 150px;
+	-fx-max-height: 150px;
+	-fx-background-color: #332E2E;
+	-fx-border-color: #fff;
+	-fx-border-radius: 7em;
+	
+	
+}

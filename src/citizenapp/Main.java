@@ -28,6 +28,4 @@ public class Main extends Application {
 		FirstPage p1 = new FirstPage();
 		p1.start(stage);
 	}
-	
-
 }

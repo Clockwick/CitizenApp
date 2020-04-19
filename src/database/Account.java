@@ -8,15 +8,40 @@ package database;
 import java.io.Serializable;
 
 /**
- *
  * @author admin
  */
-public class Account implements Serializable{
+public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String accountNumber;
     private double balance;
     private String password;
+    private int countClick;
+    Account() {
+        this.countClick = 0;
+    }
+
+    public int compareTo(Account b) {
+        if (this.countClick > b.countClick) return 1;
+        if (this.countClick < b.countClick) return -1;
+        return 0;
+    }
+
+    public int getCountClick() {
+        return countClick;
+    }
+
+    public void setCountClick(int countClick) {
+        this.countClick = countClick;
+    }
+
+    public void addClick() {
+        ++this.countClick;
+    }
+
+    public void addClick(int t) {
+        this.countClick = this.countClick + t;
+    }
 
     public String getName() {
         return name;
@@ -50,13 +75,11 @@ public class Account implements Serializable{
         this.password = password;
     }
 
-    
-    
+
     @Override
     public String toString() {
         return "Account{" + "name=" + name + ", accountNumber=" + accountNumber + ", balance=" + balance + '}';
     }
-    
-    
-    
+
+
 }

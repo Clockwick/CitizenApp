@@ -14,20 +14,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 /**
- *
  * @author admin
  */
 public class UserData implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    
+
+
     Locale locale = new Locale("en", "TH");
     private DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy", locale);
 
-	public DateFormat getDateFormat() {
-		return dateFormat;
-	}
+    public DateFormat getDateFormat() {
+        return dateFormat;
+    }
+
     private String id;
     private String name;
     private String surname;
@@ -37,35 +38,58 @@ public class UserData implements Serializable {
     private Date dateOfBirth;
     private String address;
     private String picturePath;
+    private String groupLaed;
     Phone phone;
     ArrayList<Account> accountList;
     ArrayList<adminLog> logList;
     private Date dateExpire;
     private Date dateOfIssue;
-    
+
     public void WriteData(String dataPath) {
- 
+
         //System.out.println(this.toString());
         try {
-                
-                FileOutputStream fileOut = new FileOutputStream(dataPath);
-                ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-                objectOut.writeObject(this);
-                objectOut.close();
-		System.out.println("File have been saved to " + dataPath);
-                //System.out.println("The Object  was succesfully written to a file");
+            FileOutputStream fileOut = new FileOutputStream(dataPath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this);
+            objectOut.close();
+            System.out.println("File have been saved to " + dataPath);
+            //System.out.println("The Object  was succesfully written to a file");
 
-        }catch(IOException ex) {
+        } catch (IOException ex) {
             System.out.println("UserDataWrtieDataFail");
             ex.printStackTrace();
         }
     }
-    
+
     public UserData() {
-        
+
     }
 
-    public UserData(String id, String name, String surname, String gender, String nationality,String religion,Date hbd,String phoneNumber, String address, Date dateExpire, Date dateOfIssue) {
+    public void sortAccountList() {
+        divide(0, -1 + this.accountList.size());
+    }
+
+    public void divide(int s, int e) {
+        if (s < e && e >= 1 + s) {
+            divide(s, s + (e - s) / 2);
+            divide(s + (e - s) / 2 + 1, e);
+            conquer(s, s + (e - s) / 2, e);
+        }
+    }
+
+    public void conquer(int s, int m, int e) {
+        ArrayList<Account> t = new ArrayList<Account>();
+        int l = s, r = 1 + m, j = s, i = 0;
+        while (m >= l && r <= e)
+            if (accountList.get(l).compareTo(accountList.get(r)) >= 0) t.add(accountList.get(l++));
+            else t.add(accountList.get(r++));
+        while (l <= m) t.add(accountList.get(l++));
+        while (r <= e) t.add(accountList.get(r++));
+        while (i < t.size()) accountList.set(j++, t.get(i++));
+    }
+
+    public UserData(String id, String name, String surname, String gender, String nationality, String religion, Date hbd, String phoneNumber, String address, Date dateExpire, Date dateOfIssue,String bloodgroup) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -77,12 +101,13 @@ public class UserData implements Serializable {
         this.phone = new Phone();
         this.phone.setPhoneNumber(phoneNumber);
         this.dateExpire = dateExpire;
+        this.groupLaed = bloodgroup;
         this.dateOfIssue = dateOfIssue;
-        accountList = new ArrayList<>() ;
-        logList = new ArrayList<>() ;
+        accountList = new ArrayList<>();
+        logList = new ArrayList<>();
 
     }
-    
+
     public String getId() {
         return id;
     }
@@ -102,20 +127,20 @@ public class UserData implements Serializable {
     public String getNationality() {
         return nationality;
     }
-    
+
     public String getAddress() {
         return address;
     }
 
-    public String getDateOfBirth(){
+    public String getDateOfBirth() {
         return dateFormat.format(dateOfBirth);
     }
-    
-    public String getDateExpire(){
+
+    public String getDateExpire() {
         return dateFormat.format(dateExpire);
     }
-    
-    public String getDateOfIssue(){
+
+    public String getDateOfIssue() {
         return dateFormat.format(dateOfIssue);
     }
 
@@ -159,9 +184,8 @@ public class UserData implements Serializable {
     public void setLogList(ArrayList<adminLog> logList) {
         this.logList = logList;
     }
-    
-    
-    
+
+
     public void setId(String id) {
         this.id = id;
     }
@@ -186,9 +210,9 @@ public class UserData implements Serializable {
         this.address = address;
     }
 
-    
+
     public ArrayList<Account> getAccountList() {
-	    return this.accountList;
+        return this.accountList;
     }
 
     @Override
@@ -196,13 +220,12 @@ public class UserData implements Serializable {
         return "UserData\n{" + "id=" + id + ", name=" + name + ", surname=" + surname + "\n, gender=" + gender + ", nationality=" + nationality + ", dateOfBirth=" + dateFormat.format(dateOfBirth) + ", address=" + address + ", picturePath=" + picturePath + "\n, phone=" + phone.toString() + "\n, accountListSize=" + accountList.size() + ", logListSize=" + logList.size() + ", dateExpire=" + dateFormat.format(dateExpire) + ", dateOfIssue=" + dateFormat.format(dateOfIssue) + '}';
     }
 
-    
 
-    
+    public String getGroupLaed() {
+        return groupLaed;
+    }
 
-    
-    
-    
-    
-    
+    public void setGroupLaed(String groupLaed) {
+        this.groupLaed = groupLaed;
+    }
 }
