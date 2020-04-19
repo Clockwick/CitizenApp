@@ -39,7 +39,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 	private final String addrS; //Address
 	private final String doiS; // Date of Issue
 	private final String doeS; // Date of Expiry 
-	
+	private final String bloodS;
 	private AnchorPane mainPane = new AnchorPane();
 
 	public AnchorPane getMainPane() {
@@ -51,7 +51,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 	
 	
 	public HomeInfo(String iden, String fname, String lname, String gender, String nation,
-		String dob, String relig, String addr, String doi, String doe) throws Exception {
+		String dob, String relig, String addr, String doi, String doe,String blood) throws Exception {
 		this.iden = iden;
 		firstName = fname;
 		surName = lname;
@@ -62,6 +62,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		addrS = addr;
 		doiS = doi;
 		doeS = doe;
+		bloodS = blood;
 		start();
 	}
 	
@@ -85,6 +86,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		LabelPerInput addr = new LabelPerInput("Address :", addrS);
 		LabelPerInput doi = new LabelPerInput("Date of Issue :", doiS);
 		LabelPerInput doe = new LabelPerInput("Date of Expiry :", doeS);
+		LabelPerInput blood = new LabelPerInput("Blood group:", bloodS);
 		
 		HBox nameHBox = new HBox();
 		Label fullNameLabel = new Label(CompleteHeader.getFullName());
@@ -122,8 +124,9 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 //		hbox7.getChildren().addAll(surname.setInfo1(), surname.setInfo2());
 		HBox hbox8 = new HBox(10);
 		hbox8.getChildren().addAll(nation.setInfo1(), nation.setInfo2());
-		hbox8.setPadding(new Insets(120,0,0,0));
-		
+		HBox hbox9 = new HBox(10);
+		hbox9.setPadding(new Insets(130,0,0,0));
+		hbox9.getChildren().addAll(blood.setInfo1(), blood.setInfo2());
 		//vbox-left
 		VBox vbox1 = new VBox(30);
 		vbox1.setLayoutX(110);
@@ -136,16 +139,16 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		vbox3.setPadding(new Insets(50,0,0,0));
 		HBox hbox0 = new HBox(10);
 		hbox0.getChildren().addAll(doe.setInfo1(), doe.setInfo2());
-		hbox0.setPadding(new Insets(10,0,0,0));
+		hbox0.setPadding(new Insets(0,0,0,0));
 		vbox3.getChildren().add(hbox0);
 
 		
 		//vbox-right
 		//114.23 - 67 = 47.23
-		VBox vbox2 = new VBox(90);
+		VBox vbox2 = new VBox(30);
 		vbox2.setLayoutX(200);
 		vbox2.setPadding(new Insets(67, 0, 0 , 0));
-		vbox2.getChildren().addAll(hbox8, vbox3);
+		vbox2.getChildren().addAll(hbox9 ,hbox8, vbox3);
 
 		HBox mainHBox = new HBox();
 		mainHBox.setLayoutX(100);
