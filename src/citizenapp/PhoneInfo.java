@@ -5,8 +5,8 @@
  */
 package citizenapp;
 
-import citizenapp.ChangePacket.ChangePackage;
 import citizenapp.Module.CompleteHeader;
+import citizenapp.ChangePacket.ChangePackage;
 import citizenapp.Module.LabelPerInput;
 import citizenapp.Payphone.PayphoneBill;
 import java.io.FileInputStream;

@@ -113,7 +113,7 @@ public class SuccessWithDraw {
 		
 		mainPane.getChildren().addAll(mainBg, vbox);
 
-		Scene scene = new Scene(vbox, 400, 300);
+		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
 		window.setTitle("Success Withdrawing");
 		window.showAndWait();

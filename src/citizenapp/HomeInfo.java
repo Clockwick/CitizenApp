@@ -1,8 +1,8 @@
 package citizenapp;
 
 
-import citizenapp.Module.CitizenLogo;
 import citizenapp.Module.CompleteHeader;
+import citizenapp.Module.CitizenLogo;
 import citizenapp.Module.LabelPerInput;
 import citizenapp.Module.TextWithIcon;
 import java.io.FileInputStream;

@@ -6,11 +6,14 @@
 package citizenapp;
 
 
-import citizenapp.Module.CompleteHeader;
 //import citizenapp.Module.RoundButton;
+import citizenapp.Module.CompleteHeader;
 import citizenapp.Transfer.TransferPopUp;
 import citizenapp.WithDraw.WithDrawPopUp;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -123,7 +126,11 @@ public class AccountPage extends Application implements EventHandler<ActionEvent
 		this.withDrawBtn.setPadding(new Insets(10, 15, 10 ,15));
 		this.withDrawBtn.setOnAction( e -> {
 			e.consume();
-			WithDrawPopUp.display(this.number, this.firstName, this.lastName, this.accNum, this.money);
+			try {
+				WithDrawPopUp.display(this.number, this.firstName, this.lastName, this.accNum, this.money);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(AccountPage.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		});
 		
 		//Transfer Button

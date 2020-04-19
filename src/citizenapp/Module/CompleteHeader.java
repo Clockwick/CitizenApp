@@ -1,6 +1,14 @@
 package citizenapp.Module;
 
 import citizenapp.*;
+import citizenapp.Account;
+import citizenapp.AccountCheck;
+import citizenapp.AccountList;
+import citizenapp.FirstPage;
+import citizenapp.History;
+import citizenapp.HomeInfo;
+import citizenapp.Module.TextWithIcon;
+import citizenapp.PhoneInfo;
 import database.UserData;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

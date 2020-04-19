@@ -13,7 +13,10 @@ package citizenapp;
 
 import citizenapp.Module.CompleteHeader;
 import citizenapp.Module.LoginForm;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Control;
@@ -81,7 +84,11 @@ public static ArrayList<HBox> getAccountBox() {
     			@Override
      			public void handle(MouseEvent event) {
         	 		event.consume();
-				AccountCheck.display(getNumber(), firstName,lastName, accNum, LoginForm.getUserkey().getUserData(CompleteHeader.getUser1().getId()).getAccountList().get(number).getBalance());
+				    try {
+					    AccountCheck.display(getNumber(), firstName,lastName, accNum, LoginForm.getUserkey().getUserData(CompleteHeader.getUser1().getId()).getAccountList().get(number).getBalance());
+				    } catch (FileNotFoundException ex) {
+					    Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+				    }
 //				System.out.println("Account from database" + getNumber() + ":" + LoginForm.getUserkey().getUserData(CompleteHeader.getUser1().getId()).getAccountList().get(number).getBalance());
 //				System.out.println("Account in CompleteHeader" + getNumber() + ":" + CompleteHeader.getUser1().getAccountList().get(getNumber()).getBalance());
 				AccountCheck.setAccount(self);
