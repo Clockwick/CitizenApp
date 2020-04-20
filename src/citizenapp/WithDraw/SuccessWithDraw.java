@@ -56,8 +56,10 @@ public class SuccessWithDraw {
 		lastName1 = lastName;
 		accNum1 = accNum;
 		//Stage
+		try {
+			window.initModality(Modality.APPLICATION_MODAL);	
+		} catch (Exception ex) {}
 		
-		window.initModality(Modality.APPLICATION_MODAL);
 		
 		
 		window.setOnCloseRequest(e -> {

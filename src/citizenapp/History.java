@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Pair;
 
 /**
  *
@@ -40,6 +41,7 @@ public class History {
 		start();
 	}
 	public static void start() throws Exception {
+		Log.getLogList().clear();
 		
 		HBox nameHBox = new HBox();
 		Label fullNameLabel = new Label(CompleteHeader.getFullName());
@@ -83,18 +85,25 @@ public class History {
 		scrollPane.getStyleClass().add(SCROLL);
 		scrollPane.getStylesheets().add(css);
 		
+		
+		
+		System.out.println("Logy size : " + CompleteHeader.getUser1().getLogy().size());
+		System.out.println("Log size : " + Log.getLogList().size());
+		VBox vbox = new VBox(5);
+		vbox.getChildren().clear();
+		vbox.setMinWidth(Control.USE_PREF_SIZE);
+		vbox.setMaxWidth(Control.USE_PREF_SIZE);
+		vbox.setPrefWidth(600);
+		vbox.setStyle("-fx-background-color: transparent;");
 		//Pull from Pair String
 		for (int i = 0; i < CompleteHeader.getUser1().getLogy().size(); i++) {
 			String timeString = CompleteHeader.getUser1().getLogy().get(i).getKey();
 			String detailString = CompleteHeader.getUser1().getLogy().get(i).getValue();
 			Log.add(new Log(timeString, detailString));
+			System.out.println(timeString);
+			System.out.println(detailString);
+			
 		}
-
-		VBox vbox = new VBox(5);
-		vbox.setMinWidth(Control.USE_PREF_SIZE);
-		vbox.setMaxWidth(Control.USE_PREF_SIZE);
-		vbox.setPrefWidth(600);
-		vbox.setStyle("-fx-background-color: transparent;");
 		for (int i = 0; i < Log.getLogList().size(); i++) {
 			vbox.getChildren().add(Log.getLogList().get(i).active());
 		}

@@ -152,10 +152,11 @@ public class LoginForm {
 				FirstPage.close();
 				
 			} catch (Exception ex) {
-				if (completeLoginBox.getChildren().size() < 4) {
-					completeLoginBox.getChildren().remove(loginBtn);
-					completeLoginBox.getChildren().addAll(wrong, loginBtn);
-				} 
+//				if (completeLoginBox.getChildren().size() < 4) {
+//					completeLoginBox.getChildren().remove(loginBtn);
+//					completeLoginBox.getChildren().addAll(wrong, loginBtn);
+//				} 
+				ex.printStackTrace();
 				
 				
 			}

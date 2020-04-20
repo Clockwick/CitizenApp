@@ -65,8 +65,11 @@ public class VerifyWithDraw {
 			
 		});
 		stage1.setResizable(false);
-		window.initModality(Modality.APPLICATION_MODAL);
-			
+		try {
+			window.initModality(Modality.APPLICATION_MODAL);
+	
+		} catch (Exception ex ) {}
+		
 
 	 	VBox vbox = new VBox(20);
 		Button otp = new Button();
@@ -96,13 +99,11 @@ public class VerifyWithDraw {
 		finishBtn.setOnAction(e -> {
 			try {	
 				if (leftMoney >= 0 && seconds != 0) {
-					stage1.close();
-					System.out.println("Stage close");
-					SuccessWithDraw.display(number, firstName, lastName, accNum, totalMoney, withdraw);
-					CompleteHeader.setMoney(leftMoney);
 					isShutDown = true;
 					isCountdown = false;
-					
+					stage1.close();
+					SuccessWithDraw.display(number, firstName, lastName, accNum, totalMoney, withdraw);
+					CompleteHeader.setMoney(leftMoney);
 					
 				} 
 				

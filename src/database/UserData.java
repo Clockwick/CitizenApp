@@ -44,7 +44,7 @@ public class UserData implements Serializable {
     Phone phone;
     ArrayList<Account> accountList;
     private ArrayList<adminLog> adminLogList;
-    private ArrayList<Pair<String, String>> logy;
+    private ArrayList<Pair<String, String>> logy = new ArrayList<>();
     private Date dateExpire;
     private Date dateOfIssue;
 
@@ -121,6 +121,7 @@ public class UserData implements Serializable {
         this.dateOfIssue = dateOfIssue;
         accountList = new ArrayList<>();
         adminLogList = new ArrayList<>();
+	logy = new ArrayList<>();
 	
     }
 

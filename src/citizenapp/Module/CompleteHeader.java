@@ -376,15 +376,10 @@ public class CompleteHeader {
         stage1 = stage;
         stage1.setResizable(false);
 	stage1.setOnCloseRequest(e -> {
-		for (int i = 0; i < Log.getLogList().size(); i++) {
-			String timeS = Log.getLogList().get(i).getTimeS();
-			String detailS = Log.getLogList().get(i).getDetailS();
-			user1.getLogy().add(new Pair<>(timeS, detailS));
-		}
-		System.out.println("Save Log");
 		System.out.println("Save Log");
                 user1.WriteData("src/database/" + user1.getId());
 	});
+	    
 
         HomeInfo h1 = new HomeInfo(iden, firstName, surName, gender, nation, dob, relig, addr, doi, doe, bloodGroup);
         HomeInfoScene = h1.getScene();
@@ -584,6 +579,12 @@ public class CompleteHeader {
             settingIcon.getText().setEffect(null);
             historyIcon.getImage().setEffect(null);
         });
+	 settingIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            event.consume();
+	    user1.getLogy().clear();
+	    Log.getLogList().clear();
+	    System.out.println("Clean Log");
+        });
 
         //Top HBox
         HBox hbox = new HBox(20);
@@ -629,13 +630,6 @@ public class CompleteHeader {
                 AccountList.getVBox1().getChildren().clear();
                 Account.getAccountList().clear();
                 Account.getAccountBox().clear();
-		
-		for (int i = 0; i < Log.getLogList().size(); i++) {
-			String timeS = Log.getLogList().get(i).getTimeS();
-			String detailS = Log.getLogList().get(i).getDetailS();
-			user1.getLogy().add(new Pair<>(timeS, detailS));
-		}
-		System.out.println("Save Log");
                 user1.WriteData("src/database/" + user1.getId());
                 FirstPage f1 = new FirstPage();
                 f1.start(stage1);
