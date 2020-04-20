@@ -200,6 +200,8 @@ public class ConfirmPayBill {
 		vbox.setAlignment(Pos.CENTER);
 		
 		vbox.setAlignment(Pos.CENTER);
+		vbox.setLayoutX(55);
+		vbox.setLayoutY(45);
 		
 		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
 		ImageView mainBg = new ImageView();
