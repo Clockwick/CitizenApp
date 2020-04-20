@@ -83,7 +83,8 @@ public static void display(int number, String firstName, String lastName, String
 		String costFormat = "Account No." + accNum + "  transfer " + transfer + " baht to Account No." + accNumTransfer;
 
 		//Log Message
-		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat));
+//		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat)); Error
+		Log.add(new Log(date, costFormat));
 		//Correct Image
 		Image correctPic = new Image(new FileInputStream("src/citizenapp/img/correct.png"));
 		ImageView correctImg = new ImageView();

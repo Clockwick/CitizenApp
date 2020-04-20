@@ -71,7 +71,8 @@ public class SuccessChangePackage {
 		String costFormat = "You have changed package to Package : " + packAge + " (Price : " + price + " baht " + gb + " GB " + minute + " minutes)";
 
 		//Log Message
-		CompleteHeader.getUser1().getLogList().add(new Log(dateLog, costFormat));
+//		CompleteHeader.getUser1().getLogList().add(new Log(dateLog, costFormat)); Error
+		Log.add(new Log(dateLog, costFormat));
 
 		//VBox
 		VBox vbox = new VBox(20);

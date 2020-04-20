@@ -8,6 +8,7 @@ package citizenapp.ChangePacket;
 import citizenapp.Module.CompleteHeader;
 import citizenapp.Payphone.InsuffPayphone;
 import citizenapp.Payphone.ownPhone;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -31,7 +35,8 @@ public class ChangePackage {
 	
 	
 	private static final String IDLE = "-fx-background-radius: 10px; -fx-border-radius: 10px; -fx-background-color: transparent; -fx-border-color: #000";
-	private static final String HOVER = "-fx-background-radius: 10px; -fx-border-radius: 10px; -fx-background-color: #6e6d6b; -fx-border-color: #6e6d6b";
+	private static final String HOVER = "-fx-background-radius: 10px; -fx-border-radius: 10px; -fx-background-color: linear-gradient(from 35% 35% to 100% 100%, #A49295, #d9c59e); -fx-border-color: #6e6d6b; -fx-effect: dropshadow(three-pass-box, white, 5, 0, 0 ,0);\n" +
+"    -fx-fill: whitesmoke;";
 	
 	//Package1 Info
 	private static String price1 = "399";
@@ -50,8 +55,11 @@ public class ChangePackage {
 	private static String gb4 = "20";
 	private static String min4 = "300";
 	
-	public static void display() {
+	public static void display() throws FileNotFoundException {
+		
+		
 		Stage stage = new Stage();
+		AnchorPane mainPane = new AnchorPane();
 		stage.setOnCloseRequest(e -> stage.close());
 		try {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -137,9 +145,9 @@ public class ChangePackage {
 		package4.setGraphic(packageVbox4);
 		hbox.getChildren().addAll(package1, package2);
 		hbox1.getChildren().addAll(package3, package4);
-		hbox.setPadding(new Insets(0,0,0,80));
-		hbox1.setPadding(new Insets(0,0,0,80));
-		hbox2.setPadding(new Insets(0,0,0,140));
+		hbox.setPadding(new Insets(0,0,0,5));
+		hbox1.setPadding(new Insets(0,0,0,5));
+		
 		Button confirmBtn = new Button("Confirm");
 		
 		
@@ -195,7 +203,18 @@ public class ChangePackage {
 		vbox.getChildren().addAll(t1, hbox, hbox1);
 		vbox.setAlignment(Pos.CENTER);
 		
-		Scene scene = new Scene(vbox, 400, 300);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(75);
+		vbox.setLayoutY(25);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		
+		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
 		stage.setTitle("Change Package");
 		stage.show();

@@ -10,6 +10,8 @@ import citizenapp.Module.CompleteHeader;
 import citizenapp.Module.LoginForm;
 import citizenapp.WithDraw.VerifyWithDraw;
 import database.UserData;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
@@ -19,6 +21,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -32,7 +37,10 @@ import javafx.stage.Stage;
  */
 public class TransferPopUp {
 	
-	public static void display(int number, String firstName, String lastName, String accNum, double money) {
+	private final static String css = TransferPopUp.class.getResource("../style/darkbutton.css").toExternalForm();
+	
+	public static void display(int number, String firstName, String lastName, String accNum, double money) throws FileNotFoundException {
+		AnchorPane mainPane = new AnchorPane();
 		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.initModality(Modality.APPLICATION_MODAL);
@@ -80,6 +88,7 @@ public class TransferPopUp {
 					
 				if (money - amountD >= 0) {
 					int i;
+					if (! accNumTransfer.equals(CompleteHeader.getUser1().getAccountList().get(number).getAccountNumber())) {
 					for (i = 0; i < LoginForm.getUserkey().key.size(); i++)  {
 						UserData tempUser = LoginForm.getUserkey().key.get(i).ReadData();
 						for (int j = 0; j < tempUser.getAccountList().size(); j++) {
@@ -110,11 +119,12 @@ public class TransferPopUp {
 						NotFoundUserTransfer.display();
 					}
 				} else {
-					FailTransfer.display();
+					SameAccountTransfer.display();
 				}
 				
-				stage.close();
-				
+				} else {
+					FailTransfer.display();
+				}
 			} catch (Exception ex) {
 				Logger.getLogger(AccountCheck.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -124,11 +134,23 @@ public class TransferPopUp {
 			stage.close();
 		});
 		hbox2.getChildren().addAll(confirmBtn, cancelBtn);
-		VBox.setMargin(account, new Insets(0,0,20,0));
+		VBox.setMargin(account, new Insets(0,0,0,0));
 		vbox.getChildren().addAll(account, accountNo, balanceText, hbox1, hbox, hbox2);
 		vbox.setAlignment(Pos.CENTER);
+		vbox.getStylesheets().add(css);
 		
-		Scene scene = new Scene(vbox, 400, 300);
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+	
+		vbox.setLayoutX(60);
+		vbox.setLayoutY(0);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		
+		Scene scene = new Scene(mainPane, 400, 300);
 		stage.setScene(scene);
 		stage.setTitle("Account");
 		stage.showAndWait();	
