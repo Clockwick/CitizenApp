@@ -228,10 +228,6 @@ public class UserData implements Serializable {
         return this.accountList;
     }
 
-    @Override
-    public String toString() {
-        return "UserData\n{" + "id=" + id + ", name=" + name + ", surname=" + surname + "\n, gender=" + gender + ", nationality=" + nationality + " ,Blood group=" + groupLaed +", dateOfBirth=" + dateFormat.format(dateOfBirth) + ", address=" + address + ", picturePath=" + picturePath + "\n, phone=" + phone.toString() + "\n, accountListSize=" + accountList.size() + ", logListSize=" + adminLogList.size() + ", dateExpire=" + dateFormat.format(dateExpire) + ", dateOfIssue=" + dateFormat.format(dateOfIssue) + '}';
-    }
 
 
     public String getGroupLaed() {
