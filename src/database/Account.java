@@ -16,7 +16,7 @@ public class Account implements Serializable {
     private String accountNumber;
     private double balance;
     private String password;
-    private int countClick;
+    private int countClick = 0;
     Account() {
         this.countClick = 0;
     }

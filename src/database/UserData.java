@@ -5,6 +5,7 @@
  */
 package database;
 
+import citizenapp.Log;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -41,7 +42,8 @@ public class UserData implements Serializable {
     private String groupLaed;
     Phone phone;
     ArrayList<Account> accountList;
-    ArrayList<adminLog> logList;
+    private ArrayList<adminLog> adminLogList;
+    private ArrayList<Log> logList;
     private Date dateExpire;
     private Date dateOfIssue;
 
@@ -66,6 +68,15 @@ public class UserData implements Serializable {
 
     }
 
+	public ArrayList<Log> getLogList() {
+		return logList;
+	}
+
+	public void setLogList(ArrayList<Log> logList) {
+		this.logList = logList;
+	}
+    
+
     public void sortAccountList() {
         divide(0, -1 + this.accountList.size());
     }
@@ -77,6 +88,8 @@ public class UserData implements Serializable {
             conquer(s, s + (e - s) / 2, e);
         }
     }
+    
+    
 
     public void conquer(int s, int m, int e) {
         ArrayList<Account> t = new ArrayList<Account>();
@@ -104,7 +117,7 @@ public class UserData implements Serializable {
         this.groupLaed = bloodgroup;
         this.dateOfIssue = dateOfIssue;
         accountList = new ArrayList<>();
-        logList = new ArrayList<>();
+        adminLogList = new ArrayList<>();
 
     }
 
@@ -177,12 +190,12 @@ public class UserData implements Serializable {
         this.phone = phone;
     }
 
-    public ArrayList<adminLog> getLogList() {
-        return logList;
+    public ArrayList<adminLog> getAdminLogList() {
+        return adminLogList;
     }
 
-    public void setLogList(ArrayList<adminLog> logList) {
-        this.logList = logList;
+    public void setAdminLogList(ArrayList<adminLog> logList) {
+        this.adminLogList = logList;
     }
 
 
@@ -217,7 +230,7 @@ public class UserData implements Serializable {
 
     @Override
     public String toString() {
-        return "UserData\n{" + "id=" + id + ", name=" + name + ", surname=" + surname + "\n, gender=" + gender + ", nationality=" + nationality + ", dateOfBirth=" + dateFormat.format(dateOfBirth) + ", address=" + address + ", picturePath=" + picturePath + "\n, phone=" + phone.toString() + "\n, accountListSize=" + accountList.size() + ", logListSize=" + logList.size() + ", dateExpire=" + dateFormat.format(dateExpire) + ", dateOfIssue=" + dateFormat.format(dateOfIssue) + '}';
+        return "UserData\n{" + "id=" + id + ", name=" + name + ", surname=" + surname + "\n, gender=" + gender + ", nationality=" + nationality + " ,Blood group=" + groupLaed +", dateOfBirth=" + dateFormat.format(dateOfBirth) + ", address=" + address + ", picturePath=" + picturePath + "\n, phone=" + phone.toString() + "\n, accountListSize=" + accountList.size() + ", logListSize=" + adminLogList.size() + ", dateExpire=" + dateFormat.format(dateExpire) + ", dateOfIssue=" + dateFormat.format(dateOfIssue) + '}';
     }
 
 

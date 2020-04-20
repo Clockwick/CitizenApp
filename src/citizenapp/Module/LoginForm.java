@@ -7,6 +7,7 @@ import database.UserData;
 import database.UserkeyList;
 import java.io.FileInputStream;
 import javafx.animation.FadeTransition;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -80,6 +83,7 @@ public class LoginForm {
 		PasswordField inputPw = new PasswordField();
 		inputPw.setPrefWidth(250);
 		inputPw.setPromptText("Password");
+		
 
 		
 		
@@ -96,9 +100,6 @@ public class LoginForm {
 		
 		Button loginBtn = new Button("Sign in");
 		
-		
-
-		
 		completeLoginBox.setAlignment(Pos.CENTER);
 		
 		Text wrong = new Text("Sorry, Please try again");
@@ -106,7 +107,7 @@ public class LoginForm {
 		wrong.setFont(Font.font("Arial", 14));
 		
 		
-		inputId.setText("1155023658956");
+		inputId.setText("1100254668954");
 		inputPw.setText("123");
 		
 		userLoginBox1.getChildren().addAll(idImageView, inputId);
@@ -117,7 +118,28 @@ public class LoginForm {
 		
 		completeLoginBox.setLayoutX(150);
 		completeLoginBox.setLayoutY(130);
-			
+		inputPw.setOnKeyPressed((KeyEvent key) -> {
+			if (key.getCode().equals(KeyCode.ENTER))
+			{
+				String userId = inputId.getText();
+				String pw = inputPw.getText();
+				try {
+					UserkeyList u1 = new UserkeyList("src/database/keylist");
+					userkey = u1;
+					UserData user = u1.Login(userId, pw);
+					user.sortAccountList();
+					CompleteHeader h1 = new CompleteHeader(stage, user);
+					FirstPage.close();
+
+				} catch (Exception ex) {
+					if (completeLoginBox.getChildren().size() < 4) {
+						completeLoginBox.getChildren().remove(loginBtn);
+						completeLoginBox.getChildren().addAll(wrong, loginBtn);
+					}
+					
+				}
+			}
+		});
 		loginBtn.setOnAction(e -> {
 			String userId = inputId.getText();
 			String pw = inputPw.getText();
@@ -126,7 +148,6 @@ public class LoginForm {
 				userkey = u1;
 				UserData user = u1.Login(userId, pw);
 				user.sortAccountList();
-//				Collections.sort(user.getAccountList(), Account.sortByCountClick);
 				CompleteHeader h1 = new CompleteHeader(stage, user);
 				FirstPage.close();
 				

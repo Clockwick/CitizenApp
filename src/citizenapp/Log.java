@@ -23,7 +23,7 @@ public class Log {
 	private String timeS;
 	private String detailS;
 
-	private static ArrayList<Log> logList = new ArrayList<>();
+	private final static ArrayList<Log> logList = new ArrayList<>();
 
 	public static ArrayList<Log> getLogList() {
 		return logList;

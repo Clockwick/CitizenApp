@@ -1,13 +1,12 @@
 package citizenapp.Module;
 
-import citizenapp.*;
 import citizenapp.Account;
 import citizenapp.AccountCheck;
 import citizenapp.AccountList;
 import citizenapp.FirstPage;
 import citizenapp.History;
 import citizenapp.HomeInfo;
-import citizenapp.Module.TextWithIcon;
+import citizenapp.Log;
 import citizenapp.PhoneInfo;
 import database.UserData;
 
@@ -18,7 +17,6 @@ import java.util.logging.Logger;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -66,8 +64,17 @@ public class CompleteHeader {
     private static String addr = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "; //Address
     private static String doi = "12/12/2012"; // Date of Issue
     private static String doe = "12/11/2017"; // Date of Expiry
-    private static String blood = "A";
+    private static String bloodGroup = "A";
+
+	public static String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public static void setBloodGroup(String bloodGroup) {
+		CompleteHeader.bloodGroup = bloodGroup;
+	}
     private static String phoneNumber = "0846657615";
+    
 
     public static String getPATH_TO_HUMANPIC() {
         return PATH_TO_HUMANPIC;
@@ -313,7 +320,8 @@ public class CompleteHeader {
     public CompleteHeader(Stage stage, UserData user) throws Exception {
 //		UserkeyList u = new UserkeyList("src/database/keylist");
 
-        user1 = user;
+	user1 = user;
+	System.out.println(user1.toString());
 //		System.out.println(user1.toString());
 //		System.out.println(user1.getId());
 //		System.out.println(user1.getName());
@@ -333,28 +341,41 @@ public class CompleteHeader {
 //		System.out.println(user1.getBalance());
 
         setIden(user1.getId());
+	
+
         setFirstName(user1.getName());
         setSurName(user1.getSurname());
         setFullName(user1.getName() + " " + user1.getSurname());
         setGender(user1.getGender());
+	    
         setNation(user1.getNationality());
+	
+	setBloodGroup(user1.getGroupLaed());
+	
         setDob(user1.getDateOfBirth());
+	
         setRelig(user1.getReligion());
         setAddr(user1.getAddress());
         setDoi(user1.getDateOfIssue());
+	
         setDoe(user1.getDateExpire());
         setPhoneNumber(user1.getPhone().getPhoneNumber());
         setPriceS(user1.getPhone().getPrice());
+	
         setDueDatePackage(user1.getPhone().getBillingDate());
         setGbS(user1.getPhone().getInternet());
         setMinS(user1.getPhone().getCallingTime());
-        setBalance(user1.getAccountList().get(0).getBalance());
+	
+  
+	
         setPATH_TO_HUMANPIC(user1.getPicturePath());
+	
+	
         //Set up info
         stage1 = stage;
         stage1.setResizable(false);
 
-        HomeInfo h1 = new HomeInfo(iden, firstName, surName, gender, nation, dob, relig, addr, doi, doe, blood);
+        HomeInfo h1 = new HomeInfo(iden, firstName, surName, gender, nation, dob, relig, addr, doi, doe, bloodGroup);
         HomeInfoScene = h1.getScene();
         AccountList a1 = new AccountList(user1, firstName, surName, phoneNumber);
         accountListScene = a1.getScene();
@@ -442,6 +463,8 @@ public class CompleteHeader {
         });
         homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             event.consume();
+	    System.out.println(Log.getLogList().toString());
+	    
 //			System.out.println(user1.toString());
             homeIcon.getText().setEffect(activeIconEffect);
             homeIcon.getImage().setEffect(activeIconEffect);

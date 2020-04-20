@@ -86,7 +86,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		LabelPerInput addr = new LabelPerInput("Address :", addrS);
 		LabelPerInput doi = new LabelPerInput("Date of Issue :", doiS);
 		LabelPerInput doe = new LabelPerInput("Date of Expiry :", doeS);
-		LabelPerInput blood = new LabelPerInput("Blood group:", bloodS);
+		LabelPerInput blood = new LabelPerInput("Blood group :", bloodS);
 		
 		HBox nameHBox = new HBox();
 		Label fullNameLabel = new Label(CompleteHeader.getFullName());
@@ -125,7 +125,7 @@ public class HomeInfo implements EventHandler<ActionEvent>{
 		HBox hbox8 = new HBox(10);
 		hbox8.getChildren().addAll(nation.setInfo1(), nation.setInfo2());
 		HBox hbox9 = new HBox(10);
-		hbox9.setPadding(new Insets(130,0,0,0));
+		hbox9.setPadding(new Insets(125,0,0,0));
 		hbox9.getChildren().addAll(blood.setInfo1(), blood.setInfo2());
 		//vbox-left
 		VBox vbox1 = new VBox(30);

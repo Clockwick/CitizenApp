@@ -267,6 +267,7 @@ public class UserkeyList implements Serializable {
                             System.out.println("[8]picturePath");
                             System.out.println("[9]Bank");
                             System.out.println("[10]Phone");
+			    System.out.println("[11]BloodGroup");
                             System.out.println("[0]Back");
                             inp = sc.nextInt();
 
@@ -530,6 +531,13 @@ public class UserkeyList implements Serializable {
 
 
                                     break;
+				    
+				case 11:
+					String tempBloodGroup;
+					System.out.println("Enter New Blood Group");
+					tempBloodGroup = sc.nextLine();
+					cofigData.setGroupLaed(tempBloodGroup);
+					break;
 
                             }
                             key.get(mUser - 1).WriteData(cofigData);

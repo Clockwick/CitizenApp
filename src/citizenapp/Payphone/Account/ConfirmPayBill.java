@@ -15,6 +15,8 @@ import citizenapp.Payphone.PayAlready;
 import citizenapp.Payphone.SuccessPayphone;
 import citizenapp.Payphone.otherPhone;
 import database.UserData;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Date;
 
 import java.util.logging.Level;
@@ -23,6 +25,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -36,18 +41,22 @@ import javafx.stage.Stage;
  */
 public class ConfirmPayBill {
 	
-	public static void display(int number, String accNum, double balance, String phoneNumber, double price) {
+	private static final String css = ConfirmPayBill.class.getResource("../style/darkbutton.css").toExternalForm();
+	
+	public static void display(int number, String accNum, double balance, String phoneNumber, double price) throws FileNotFoundException {
 		UserData thisUser = CompleteHeader.getUser1();
 		UserData otherUser = LoginForm.getUserkey().getUserData(LoginForm.getUserkey().key.get(WhichAccount.getQ()).getId());
 		Stage window =  new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
+		
+		AnchorPane mainPane = new AnchorPane();
 		//VBox
-		VBox vbox = new VBox(2);
+		VBox vbox = new VBox(5);
 		
 		Date dateNow = new Date();
 		 
 		//Text
-		Text t = new Text("The account that you want to pay by phone bill");
+		Text t = new Text("Are you sure to pay the bill?");
 		t.setFont(Font.font("Ink Free", 24));
 		//Account No.
 		Text accNumText = new Text("Account No. : " + accNum);
@@ -161,14 +170,16 @@ public class ConfirmPayBill {
 							}
 							}
 						else {
+							
 							InsuffPayphone.display();
+							break;
 						}
 
 					} 
 				}  
 				i = Account.getAccountList().size() + 1;
 				if (i == Account.getAccountList().size()) {
-					System.out.println("Account not found");
+					NotFoundAccount.display();
 				}
 					
 			}
@@ -188,7 +199,19 @@ public class ConfirmPayBill {
 		vbox.getChildren().addAll(t, accNumText, balanceText, t1, phoneText, priceText, hbox);
 		vbox.setAlignment(Pos.CENTER);
 		
-		Scene scene = new Scene(vbox, 400, 300);
+		vbox.setAlignment(Pos.CENTER);
+		
+		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
+		ImageView mainBg = new ImageView();
+		mainBg.setImage(img1);
+		mainBg.setFitWidth(400);
+		mainBg.setFitHeight(300);
+		vbox.getStylesheets().add(css);
+		
+		mainPane.getChildren().addAll(mainBg, vbox);
+		
+		
+		Scene scene = new Scene(mainPane, 400, 300);
 		window.setScene(scene);
 		window.setTitle("Confirm Pay phone bill");
 		window.show();

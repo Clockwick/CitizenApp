@@ -18,10 +18,12 @@ public class Main extends Application {
 	
 	private static final String PATH = "src/database/keylist"; 
 	public static void main(String[] args) throws Exception {
-//		UserkeyList ukl = new UserkeyList();
-//		ukl.WriteKeyList(PATH);
-//		ukl.Login("admin", "admin");
-		launch(args);
+		if (!true) {
+			UserkeyList ukl = new UserkeyList(PATH);
+//			ukl.WriteKeyList(PATH);
+			ukl.Login("admin", "admin");
+		}
+		else launch(args);
 	}
 	@Override
 	public void start(Stage stage) throws Exception {

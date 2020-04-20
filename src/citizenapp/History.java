@@ -7,29 +7,22 @@ package citizenapp;
 
 import citizenapp.Module.CompleteHeader;
 import java.io.FileInputStream;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 /**
  *
@@ -96,7 +89,7 @@ public class History {
 		vbox.setPrefWidth(600);
 		vbox.setStyle("-fx-background-color: transparent;");
 		for (int i = 0; i < Log.getLogList().size(); i++) {
-			vbox.getChildren().add(Log.getLogList().get(i).active());
+			vbox.getChildren().add(CompleteHeader.getUser1().getLogList().get(i).active());
 		}
 		
 		scrollPane.setContent(vbox);
@@ -132,7 +125,7 @@ public class History {
 		secondBg.setOpacity(0.8);
 		mainPane.getChildren().addAll(mainBg, secondBg, CompleteHeader.getLogo(), CompleteHeader.getNavbar(), CompleteHeader.getTopRight(),nameHBox, mainRec, scrollPane);
 		
-		if (Log.getLogList().isEmpty()) {
+		if (CompleteHeader.getUser1().getLogList().isEmpty()) {
 			mainPane.getChildren().add(noList);
 		} else {
 			mainPane.getChildren().remove(noList);

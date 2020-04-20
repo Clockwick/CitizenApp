@@ -85,6 +85,8 @@ public static ArrayList<HBox> getAccountBox() {
      			public void handle(MouseEvent event) {
         	 		event.consume();
 				    try {
+					    CompleteHeader.getUser1().getAccountList().get(number).addClick();
+					    System.out.println("Account "  + number + ": " + CompleteHeader.getUser1().getAccountList().get(number).getCountClick());
 					    AccountCheck.display(getNumber(), firstName,lastName, accNum, LoginForm.getUserkey().getUserData(CompleteHeader.getUser1().getId()).getAccountList().get(number).getBalance());
 				    } catch (FileNotFoundException ex) {
 					    Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
