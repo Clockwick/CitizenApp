@@ -5,6 +5,7 @@
  */
 
 
+import citizenapp.Log;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -39,7 +40,8 @@ public class UserData implements Serializable {
     private String picturePath;
     Phone phone;
     ArrayList<Account> accountList;
-    ArrayList<adminLog> logList;
+    ArrayList<adminLog> adminLogList;
+    ArrayList<Log> logList;
     private Date dateExpire;
     private Date dateOfIssue;
     private double balance;
@@ -79,7 +81,8 @@ public class UserData implements Serializable {
         this.dateExpire = dateExpire;
         this.dateOfIssue = dateOfIssue;
         accountList = new ArrayList<>() ;
-        logList = new ArrayList<>() ;
+        adminLogList = new ArrayList<>() ;
+	logList = new ArrayList<>();
 
     }
     
@@ -155,13 +158,23 @@ public class UserData implements Serializable {
         this.phone = phone;
     }
 
-    public ArrayList<adminLog> getLogList() {
-        return logList;
+    public ArrayList<adminLog> getAdminLogList() {
+        return adminLogList;
     }
 
-    public void setLogList(ArrayList<adminLog> logList) {
-        this.logList = logList;
+    public void setadminLogList(ArrayList<adminLog> adminLogList) {
+        this.adminLogList = adminLogList;
     }
+
+public ArrayList<Log> getLogList() {
+	return logList;
+}
+
+public void setLogList(ArrayList<Log> logList) {
+	this.logList = logList;
+}
+    
+    
     
     
     

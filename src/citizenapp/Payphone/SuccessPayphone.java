@@ -62,7 +62,7 @@ public class SuccessPayphone {
 		}
 			
 		//Log Message
-		Log.add(new Log(date, costFormat));
+		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat));
 
 		//VBox
 		VBox vbox = new VBox(20);

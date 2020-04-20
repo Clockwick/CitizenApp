@@ -79,7 +79,7 @@ public class SuccessWithDraw {
 		String costFormat = "You have withdrawed " + withdraw + " baht from Account No." + accNum;
 
 		//Log Message
-		Log.add(new Log(date, costFormat));
+		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat));
 
 		//Correct Image
 		Image correctPic = new Image(new FileInputStream("src/citizenapp/img/correct.png"));

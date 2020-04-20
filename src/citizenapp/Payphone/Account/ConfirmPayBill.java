@@ -41,7 +41,7 @@ import javafx.stage.Stage;
  */
 public class ConfirmPayBill {
 	
-	private static final String css = ConfirmPayBill.class.getResource("../style/darkbutton.css").toExternalForm();
+	private static final String css = ConfirmPayBill.class.getResource("../../style/darkbutton.css").toExternalForm();
 	
 	public static void display(int number, String accNum, double balance, String phoneNumber, double price) throws FileNotFoundException {
 		UserData thisUser = CompleteHeader.getUser1();

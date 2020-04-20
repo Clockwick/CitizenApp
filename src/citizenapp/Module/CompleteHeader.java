@@ -374,6 +374,10 @@ public class CompleteHeader {
         //Set up info
         stage1 = stage;
         stage1.setResizable(false);
+	stage1.setOnCloseRequest(e -> {
+		CompleteHeader.getUser1().setLogList(CompleteHeader.getUser1().getLogList());
+                user1.WriteData("src/database/" + user1.getId());
+	});
 
         HomeInfo h1 = new HomeInfo(iden, firstName, surName, gender, nation, dob, relig, addr, doi, doe, bloodGroup);
         HomeInfoScene = h1.getScene();
@@ -463,7 +467,7 @@ public class CompleteHeader {
         });
         homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             event.consume();
-	    System.out.println(Log.getLogList().toString());
+	    System.out.println(CompleteHeader.getUser1().getLogList());
 	    
 //			System.out.println(user1.toString());
             homeIcon.getText().setEffect(activeIconEffect);
@@ -619,7 +623,7 @@ public class CompleteHeader {
                 AccountList.getVBox1().getChildren().clear();
                 Account.getAccountList().clear();
                 Account.getAccountBox().clear();
-//				CompleteHeader.getUser1().setLogListInUserData(Log.getLogList());
+		CompleteHeader.getUser1().setLogList(CompleteHeader.getUser1().getLogList());
                 user1.WriteData("src/database/" + user1.getId());
                 FirstPage f1 = new FirstPage();
                 f1.start(stage1);

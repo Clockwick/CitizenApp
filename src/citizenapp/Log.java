@@ -5,6 +5,7 @@
  */
 package citizenapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
@@ -16,7 +17,8 @@ import javafx.scene.text.Text;
  *
  * @author arthris
  */
-public class Log {
+public class Log implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Text timeText = new Text();
 	private Text detailText = new Text();
 	private HBox hbox = new HBox();
