@@ -32,6 +32,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  *
@@ -80,7 +81,8 @@ public class SuccessWithDraw {
 
 		//Log Message
 //		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat)); Error
-		Log.add(new Log(date, costFormat));
+//		Log.add(new Log(date, costFormat));
+		CompleteHeader.getUser1().getLogy().add(new Pair<>(date, costFormat));
 		//Correct Image
 		Image correctPic = new Image(new FileInputStream("src/citizenapp/img/correct.png"));
 		ImageView correctImg = new ImageView();
@@ -104,6 +106,8 @@ public class SuccessWithDraw {
 		
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().addAll(correctImg, t1,t2,t3,t4,t5);
+		
+		
 		
 		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG3()));
 		ImageView mainBg = new ImageView();

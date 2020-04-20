@@ -31,6 +31,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 
 /**
@@ -72,7 +73,7 @@ public class SuccessChangePackage {
 
 		//Log Message
 //		CompleteHeader.getUser1().getLogList().add(new Log(dateLog, costFormat)); Error
-		Log.add(new Log(dateLog, costFormat));
+		CompleteHeader.getUser1().getLogy().add(new Pair<>(dateLog, costFormat));
 
 		//VBox
 		VBox vbox = new VBox(20);

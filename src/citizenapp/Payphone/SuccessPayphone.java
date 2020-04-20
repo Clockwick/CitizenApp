@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.Locale;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
+import javafx.util.Pair;
 
 /**
  *
@@ -63,7 +64,7 @@ public class SuccessPayphone {
 			
 		//Log Message
 //		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat));
-		Log.add(new Log(date, costFormat));
+		CompleteHeader.getUser1().getLogy().add(new Pair<>(date, costFormat));
 
 		//VBox
 		VBox vbox = new VBox(20);

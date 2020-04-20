@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import javafx.util.Pair;
 
 /**
  * @author admin
@@ -43,7 +44,7 @@ public class UserData implements Serializable {
     Phone phone;
     ArrayList<Account> accountList;
     private ArrayList<adminLog> adminLogList;
-    private ArrayList<Log> logList;
+    private ArrayList<Pair<String, String>> logy;
     private Date dateExpire;
     private Date dateOfIssue;
 
@@ -51,6 +52,7 @@ public class UserData implements Serializable {
 
         //System.out.println(this.toString());
         try {
+		
             FileOutputStream fileOut = new FileOutputStream(dataPath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(this);
@@ -59,7 +61,7 @@ public class UserData implements Serializable {
             //System.out.println("The Object  was succesfully written to a file");
 
         } catch (IOException ex) {
-            System.out.println("UserDataWrtieDataFail");
+            System.out.println("UserDataWriteDataFail");
             ex.printStackTrace();
         }
     }
@@ -68,14 +70,15 @@ public class UserData implements Serializable {
 
     }
 
-	public ArrayList<Log> getLogList() {
-		return logList;
+	public ArrayList<Pair<String, String>> getLogy() {
+		return logy;
 	}
 
-	public void setLogList(ArrayList<Log> logList) {
-		this.logList = logList;
+	public void setLogy(ArrayList<Pair<String, String>> logy) {
+		this.logy = logy;
 	}
-    
+
+
 
     public void sortAccountList() {
         divide(0, -1 + this.accountList.size());
@@ -118,7 +121,7 @@ public class UserData implements Serializable {
         this.dateOfIssue = dateOfIssue;
         accountList = new ArrayList<>();
         adminLogList = new ArrayList<>();
-
+	
     }
 
     public String getId() {

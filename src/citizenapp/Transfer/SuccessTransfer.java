@@ -32,6 +32,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  *
@@ -84,7 +85,7 @@ public static void display(int number, String firstName, String lastName, String
 
 		//Log Message
 //		CompleteHeader.getUser1().getLogList().add(new Log(date, costFormat)); Error
-		Log.add(new Log(date, costFormat));
+		CompleteHeader.getUser1().getLogy().add(new Pair<>(date, costFormat));
 		//Correct Image
 		Image correctPic = new Image(new FileInputStream("src/citizenapp/img/correct.png"));
 		ImageView correctImg = new ImageView();

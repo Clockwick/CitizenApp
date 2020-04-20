@@ -82,6 +82,13 @@ public class History {
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		scrollPane.getStyleClass().add(SCROLL);
 		scrollPane.getStylesheets().add(css);
+		
+		//Pull from Pair String
+		for (int i = 0; i < CompleteHeader.getUser1().getLogy().size(); i++) {
+			String timeString = CompleteHeader.getUser1().getLogy().get(i).getKey();
+			String detailString = CompleteHeader.getUser1().getLogy().get(i).getValue();
+			Log.add(new Log(timeString, detailString));
+		}
 
 		VBox vbox = new VBox(5);
 		vbox.setMinWidth(Control.USE_PREF_SIZE);
@@ -89,7 +96,7 @@ public class History {
 		vbox.setPrefWidth(600);
 		vbox.setStyle("-fx-background-color: transparent;");
 		for (int i = 0; i < Log.getLogList().size(); i++) {
-			vbox.getChildren().add(CompleteHeader.getUser1().getLogList().get(i).active());
+			vbox.getChildren().add(Log.getLogList().get(i).active());
 		}
 		
 		scrollPane.setContent(vbox);
@@ -101,8 +108,6 @@ public class History {
 		noList.setLayoutX(220);
 		noList.setLayoutY(340);
 
-		
-		
 		//Primary Background
 		Image img1 = new Image(new FileInputStream(CompleteHeader.getPATH_TO_BG1()));
 		ImageView mainBg = new ImageView();
@@ -125,7 +130,7 @@ public class History {
 		secondBg.setOpacity(0.8);
 		mainPane.getChildren().addAll(mainBg, secondBg, CompleteHeader.getLogo(), CompleteHeader.getNavbar(), CompleteHeader.getTopRight(),nameHBox, mainRec, scrollPane);
 		
-		if (CompleteHeader.getUser1().getLogList().isEmpty()) {
+		if (Log.getLogList().isEmpty()) {
 			mainPane.getChildren().add(noList);
 		} else {
 			mainPane.getChildren().remove(noList);

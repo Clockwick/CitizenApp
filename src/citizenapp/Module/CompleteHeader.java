@@ -29,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class CompleteHeader {
 
@@ -375,7 +376,13 @@ public class CompleteHeader {
         stage1 = stage;
         stage1.setResizable(false);
 	stage1.setOnCloseRequest(e -> {
-		CompleteHeader.getUser1().setLogList(CompleteHeader.getUser1().getLogList());
+		for (int i = 0; i < Log.getLogList().size(); i++) {
+			String timeS = Log.getLogList().get(i).getTimeS();
+			String detailS = Log.getLogList().get(i).getDetailS();
+			user1.getLogy().add(new Pair<>(timeS, detailS));
+		}
+		System.out.println("Save Log");
+		System.out.println("Save Log");
                 user1.WriteData("src/database/" + user1.getId());
 	});
 
@@ -467,7 +474,6 @@ public class CompleteHeader {
         });
         homeIcon.getHbox().addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
             event.consume();
-	    System.out.println(CompleteHeader.getUser1().getLogList());
 	    
 //			System.out.println(user1.toString());
             homeIcon.getText().setEffect(activeIconEffect);
@@ -623,7 +629,13 @@ public class CompleteHeader {
                 AccountList.getVBox1().getChildren().clear();
                 Account.getAccountList().clear();
                 Account.getAccountBox().clear();
-		CompleteHeader.getUser1().setLogList(CompleteHeader.getUser1().getLogList());
+		
+		for (int i = 0; i < Log.getLogList().size(); i++) {
+			String timeS = Log.getLogList().get(i).getTimeS();
+			String detailS = Log.getLogList().get(i).getDetailS();
+			user1.getLogy().add(new Pair<>(timeS, detailS));
+		}
+		System.out.println("Save Log");
                 user1.WriteData("src/database/" + user1.getId());
                 FirstPage f1 = new FirstPage();
                 f1.start(stage1);

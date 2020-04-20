@@ -64,6 +64,24 @@ public class Log implements Serializable{
 	public String toString() {
 		return this.timeS + " " + this.detailS;
 	}
+
+	public String getTimeS() {
+		return timeS;
+	}
+
+	public void setTimeS(String timeS) {
+		this.timeS = timeS;
+	}
+
+	public String getDetailS() {
+		return detailS;
+	}
+
+	public void setDetailS(String detailS) {
+		this.detailS = detailS;
+	}
+	
+	
 	
 	
 }
