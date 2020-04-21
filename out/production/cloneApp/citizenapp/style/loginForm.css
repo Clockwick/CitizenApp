@@ -1,0 +1,37 @@
+.vbox {
+    -fx-background-color: rgba(175,175,175,0.5);
+    -fx-padding: 20px;
+    -fx-background-radius: 5px;
+  
+}
+
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    
+ }
+
+.text-field:focused {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;    
+}
+
+
+
+
+.button {
+        -fx-padding: 5 25;
+        -fx-font-family : "Arial";
+        -fx-background-color: rgba(255,255,255,0.5);
+        -fx-text-fill: whitesmoke;
+}
+
+.button:hover {
+        -fx-padding: 5 25;
+        -fx-font-family : "Arial";
+        -fx-background-color: rgba(200,200,200,0.5);
+        -fx-text-fill: white;
+}

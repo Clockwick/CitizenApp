@@ -26,8 +26,55 @@ public class UserkeyList implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public ArrayList<UserKey> key;
-
+    public ArrayList<adminLog> adminLogs;
     private static final String DATAPATH_SRC = "src/database/";
+
+    public void addLogs(String head, String prev, String next) {
+        adminLog temp = new adminLog();
+        temp.setString("    prev : " + prev + "\n" + "    " + "next : " + next);
+        temp.setHead(head);
+        adminLogs.add(temp);
+    }
+
+    public void addLogs(String head, String detail) {
+        adminLog temp = new adminLog();
+        temp.setString("    Detail : " + detail);
+        temp.setHead(head);
+        adminLogs.add(temp);
+    }
+
+    public void addLogs(String id, String name, String surname, String gender, String nation, String religion, Date hbd, String phoneNumber, String address, Date dateExpire, Date dateOfIssue, String bloodgroup) {
+        adminLog temp = new adminLog();
+        temp.setHead("Register Account");
+        String T = "                  ";
+        DateFormat dateformat = new SimpleDateFormat("dd MM Y");
+        temp.setString("    Detail :  ->  id : " + id + "\n" + T +
+                "name : " + name + "\n" + T +
+                "surname : " + surname + "\n" + T +
+                "gender : " + gender + "\n" + T +
+                "nationality : " + nation + "\n" + T +
+                "religion : " + religion + "\n" + T +
+                "HBD : " + dateformat.format(hbd) + "\n" + T +
+                "phoneNumber : " + phoneNumber + "\n" + T +
+                "address : " + address + "\n" + T +
+                "dateExpire : " + dateformat.format(dateExpire) + "\n" + T +
+                "dateOfIssue : " + dateformat.format(dateOfIssue) + "\n" + T +
+                "bloodGroup : " + bloodgroup
+        );
+        adminLogs.add(temp);
+    }
+
+    public void SHOWADMINLOGS() {
+        if (adminLogs.isEmpty()) {
+            System.out.println("Admin logs is empty.");
+            return;
+        }
+        System.out.println("----- Admin logs -----");
+        adminLogs.forEach((x) -> {
+            System.out.println(x.getDateString() + " : " + x.getHead() + "\n" + x.getDetailString());
+        });
+        System.out.println("----------------------");
+    }
 
     public UserkeyList() {
         this.key = new ArrayList<>();
@@ -68,11 +115,11 @@ public class UserkeyList implements Serializable {
 //        System.out.println(id.matches("[0-9]+"));
 //        System.out.println(id.matches("^[a-zA-Z]*$"));
 //        System.out.println(id.length()==13);
-        while( !id.matches("[0-9]+") || id.length()!=13){
+        while (!id.matches("[0-9]+") || id.length() != 13) {
             System.out.println("id must contain only number and have lenght of 13 :");
             id = scanner.nextLine();
         }
-        
+
         int i = 0;
         while (i < key.size()) {
             for (i = 0; i < key.size(); i++) {
@@ -91,18 +138,18 @@ public class UserkeyList implements Serializable {
 
         System.out.println("Enter Name: ");
         String name = scanner.nextLine();
-        while(!name.matches("^[a-zA-Z]*$")){
+        while (!name.matches("^[a-zA-Z]*$")) {
             System.out.println("name must contain only alphabets");
             name = scanner.nextLine();
         }
-        
+
         System.out.println("Enter Surname: ");
         String surname = scanner.nextLine();
-        while(!surname.matches("^[a-zA-Z]*$")){
+        while (!surname.matches("^[a-zA-Z]*$")) {
             System.out.println("surname must contain only alphabets");
             surname = scanner.nextLine();
         }
-        
+
         System.out.println("Enter Gender: [M,F,O]");
         String gender = scanner.nextLine();
         while (!(gender.equals("M") || gender.equals("m") || gender.equals("F") || gender.equals("f") || gender.equals("O") || gender.equals("o"))) {
@@ -164,7 +211,7 @@ public class UserkeyList implements Serializable {
         address = scanner.nextLine();
         System.out.println("Enter phoneNumber");
         String phoneNumber = scanner.nextLine();
-            while(!phoneNumber.matches("[0-9]+") || phoneNumber.length()!=10){
+        while (!phoneNumber.matches("[0-9]+") || phoneNumber.length() != 10) {
             System.out.println("phonenumber must contain only number and have a lenght of 10 :");
             phoneNumber = scanner.nextLine();
         }
@@ -174,6 +221,7 @@ public class UserkeyList implements Serializable {
         expDate.setYear(isDate.getYear() + 7);
         //REGISTER HERE -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
         UserData uData = new UserData(id, name, surname, gender, nationality, religion, birthDate, phoneNumber, address, expDate, isDate, blood);
+        this.addLogs(id, name, surname, gender, nationality, religion, birthDate, phoneNumber, address, expDate, isDate, blood);
         uData.WriteData(DATAPATH_SRC + id);
         this.WriteKeyList(DATAPATH_SRC + "keylist");
 
@@ -197,6 +245,19 @@ public class UserkeyList implements Serializable {
         System.out.println("UserNotFound/AdminModeEnded");
         return new UserData();
     }
+
+    @Override
+    public String toString() {
+        return "UserkeyList{" +
+                "key=" + key +
+                ", adminLogs=" + adminLogs +
+                '}';
+    }
+
+    public ArrayList<adminLog> getAdminLogs() {
+        return adminLogs;
+    }
+
 
     public UserData getUserData(String id) {
         for (int i = 0; i < key.size(); i++) {
@@ -239,8 +300,9 @@ public class UserkeyList implements Serializable {
                     System.out.println("[1]manageAccount");
                     System.out.println("[2]register");
                     System.out.println("[3]deleteAccount");
+                    System.out.println("[9]showAdminLogs");
                     System.out.println("[0]Exit");
-                    while (inp < 0 || inp > 3) {
+                    while ((inp < 0 || inp > 3) && inp != 9) {
                         try {
                             System.out.println("Enter The Number");
                             inp = sc.nextInt();
@@ -251,7 +313,9 @@ public class UserkeyList implements Serializable {
                         }
                     }
                     break;
-
+                case 0:
+                    inp = 0;
+                    break;
                 case 1:
                     System.out.println("******************");
                     //System.out.println(key.size());
@@ -269,11 +333,11 @@ public class UserkeyList implements Serializable {
                                 System.out.println("Enter the number in range of the array : ");
                                 inp = sc.nextInt();
                             }
-                            if(inp == 0){
+                            if (inp == 0) {
                                 stage = 99;
                                 break;
                             }
-                                
+
                         } else {
                             mUser = 1;
                         }
@@ -294,7 +358,7 @@ public class UserkeyList implements Serializable {
                             System.out.println("[8]picturePath");
                             System.out.println("[9]Bank");
                             System.out.println("[10]Phone");
-			    System.out.println("[11]BloodGroup");
+                            System.out.println("[11]BloodGroup");
                             System.out.println("[0]Back");
                             inp = sc.nextInt();
 
@@ -304,37 +368,48 @@ public class UserkeyList implements Serializable {
                             }
 
                             UserData cofigData = key.get(mUser - 1).ReadData();
-
+                            String prevState, nextState;
                             switch (inp) {
                                 case 1:
                                     System.out.println("Enter New Id");
+                                    prevState = key.get(mUser - 1).getId();
                                     File delFile = new File(key.get(mUser - 1).getDataPath());
                                     sc.nextLine();
-                                    key.get(mUser - 1).setId(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    key.get(mUser - 1).setId(nextState);
                                     key.get(mUser - 1).setDataPath(DATAPATH_SRC + key.get(mUser - 1).getId());
                                     //System.out.println("Debug"+key.get(mUser).getId());
                                     cofigData.setId(key.get(mUser - 1).getId());
                                     delFile.delete();
-
+                                    this.addLogs("User : " + (mUser - 1) + " Change id", prevState, nextState);
                                     break;
                                 case 2:
                                     System.out.println("Enter New Password");
+                                    prevState = key.get(mUser - 1).getPassword();
                                     sc.nextLine();
                                     String newpassword = sc.nextLine();
                                     key.get(mUser - 1).setPassword(newpassword);
+                                    this.addLogs("User : " + (mUser - 1) + " Change password", prevState, newpassword);
                                     break;
                                 case 3:
                                     System.out.println("Enter New Name");
+                                    prevState = cofigData.getName();
                                     sc.nextLine();
-                                    cofigData.setName(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    cofigData.setName(nextState);
+                                    this.addLogs("User : " + (mUser - 1) + " Change name", prevState, nextState);
                                     break;
                                 case 4:
                                     System.out.println("Enter New Surname");
+                                    prevState = cofigData.getSurname();
                                     sc.nextLine();
-                                    cofigData.setSurname(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    cofigData.setSurname(nextState);
+                                    this.addLogs("User : " + (mUser - 1) + " Change surname", prevState, nextState);
                                     break;
                                 case 5:
                                     System.out.println("Enter New Gender [M,F,O]");
+                                    prevState = cofigData.getGender();
                                     String gender = sc.nextLine();
                                     while (!(gender.equals("M") || gender.equals("m") || gender.equals("F") || gender.equals("f") || gender.equals("O") || gender.equals("o"))) {
                                         System.out.println("pls,Enter the gender in the right format");
@@ -362,21 +437,31 @@ public class UserkeyList implements Serializable {
                                             break;
                                     }
                                     cofigData.setGender(gender);
+                                    this.addLogs("User : " + (mUser - 1) + " Change gender", prevState, gender);
                                     break;
                                 case 6:
                                     System.out.println("Enter New Nationlity");
+                                    prevState = cofigData.getNationality();
                                     sc.nextLine();
-                                    cofigData.setNationality(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    cofigData.setNationality(nextState);
+                                    this.addLogs("User : " + (mUser - 1) + " Change nationlity", prevState, nextState);
                                     break;
                                 case 7:
                                     System.out.println("Enter New Address");
+                                    prevState = cofigData.getAddress();
                                     sc.nextLine();
-                                    cofigData.setAddress(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    cofigData.setAddress(nextState);
+                                    this.addLogs("User : " + (mUser - 1) + " Change name", prevState, nextState);
                                     break;
                                 case 8:
                                     System.out.println("Enter New PicturePath");
+                                    prevState = cofigData.getPicturePath();
                                     sc.nextLine();
-                                    cofigData.setPicturePath(sc.nextLine());
+                                    nextState = sc.nextLine();
+                                    cofigData.setPicturePath(nextState);
+                                    this.addLogs("User : " + (mUser - 1) + " Change picturepath", prevState, nextState);
                                     break;
                                 case 9:
                                     int bInp = 4;
@@ -423,12 +508,15 @@ public class UserkeyList implements Serializable {
                                                         switch (configMenuInp) {
                                                             case 1:
                                                                 System.out.println("Enter New Account Name");
+                                                                prevState = cofigData.accountList.get(accountToManage - 1).getName();
                                                                 sc.nextLine();
                                                                 String AccountNameChangeInp = sc.nextLine();
                                                                 cofigData.accountList.get(accountToManage - 1).setName(AccountNameChangeInp);
+                                                                this.addLogs("User : " + (mUser - 1) + " -> Account : " + (accountToManage - 1) + " Change name", prevState, AccountNameChangeInp);
                                                                 break;
                                                             case 2:
                                                                 System.out.println("Enter New Account Number");
+                                                                prevState = cofigData.accountList.get(accountToManage - 1).getAccountNumber();
                                                                 String AccountNumberChangeInp = sc.nextLine();
                                                                 for (int i = 0; i < key.size(); i++) {
                                                                     UserData tmpUser = key.get(i).ReadData();
@@ -443,18 +531,23 @@ public class UserkeyList implements Serializable {
 
                                                                 }
                                                                 cofigData.accountList.get(accountToManage - 1).setAccountNumber(AccountNumberChangeInp);
+                                                                this.addLogs("User : " + (mUser - 1) + " -> Account : " + (accountToManage - 1) + " Change number", prevState, AccountNumberChangeInp);
                                                                 break;
                                                             case 3:
                                                                 System.out.println("Enter New Balance");
+                                                                prevState = Double.toString(cofigData.accountList.get(accountToManage - 1).getBalance());
                                                                 double balanceInp = sc.nextDouble();
                                                                 cofigData.accountList.get(accountToManage - 1).setBalance(balanceInp);
+                                                                this.addLogs("User : " + (mUser - 1) + " -> Account : " + (accountToManage - 1) + " Change balance", prevState, Double.toString(balanceInp));
                                                                 break;
                                                             case 4:
                                                                 System.out.println("Enter New Password");
+                                                                prevState = cofigData.accountList.get(accountToManage - 1).getPassword();
                                                                 String tmpNewPassword = sc.nextLine();
                                                                 tmpNewPassword = sc.nextLine();
                                                                 System.out.println(tmpNewPassword);
                                                                 cofigData.accountList.get(accountToManage - 1).setPassword(tmpNewPassword);
+                                                                this.addLogs("User : " + (mUser - 1) + " -> Account : " + (accountToManage - 1) + " Change password", prevState, tmpNewPassword);
                                                                 break;
 
                                                         }
@@ -473,11 +566,11 @@ public class UserkeyList implements Serializable {
                                                 Account creatingAccount = new Account();
                                                 System.out.println("Enter Name Of Account");
                                                 sc.nextLine();
-                                                String tmpRegisterStringInput = sc.nextLine();
-                                                creatingAccount.setName(tmpRegisterStringInput);
+                                                String RegisterName = sc.nextLine();
+                                                creatingAccount.setName(RegisterName);
                                                 System.out.println("Enter Your Balance");
-                                                double tmmRegisterDoubleInput = sc.nextDouble();
-                                                creatingAccount.setBalance(tmmRegisterDoubleInput);
+                                                double RegisterBalance = sc.nextDouble();
+                                                creatingAccount.setBalance(RegisterBalance);
                                                 System.out.println("Enter Your Account Number");
                                                 String tmpAccountNubmer = sc.nextLine();
                                                 tmpAccountNubmer = sc.nextLine();
@@ -488,6 +581,7 @@ public class UserkeyList implements Serializable {
                                                 String tmpAccountPassword = sc.nextLine();
                                                 tmpAccountPassword = sc.nextLine();
                                                 creatingAccount.setPassword(tmpAccountPassword);
+                                                this.addLogs("User : " + (mUser - 1) + " Register Account", "name:" + RegisterName + ",balance:" + RegisterBalance + ",accountNumber:" + tmpAccountNubmer + ",password:" + tmpAccountPassword);
                                                 break;
                                             case 3:
                                                 System.out.println("******************");
@@ -500,6 +594,8 @@ public class UserkeyList implements Serializable {
                                                         System.out.println("pls,Choose Account in range of the list");
                                                         deleteAccountInp = sc.nextInt();
                                                     }
+                                                    Account temp = cofigData.accountList.get(deleteAccountInp - 1);
+                                                    this.addLogs("User : " + (mUser - 1) + " Delete Account", "name:" + temp.getName() + ",balance:" + temp.getBalance() + ",accountNumber:" + temp.getAccountNumber() + ",password:" + temp.getPassword());
                                                     cofigData.accountList.remove(deleteAccountInp - 1);
 
                                                 } else {
@@ -518,7 +614,7 @@ public class UserkeyList implements Serializable {
                                         System.out.println(cofigData.phone.toString());
                                         System.out.println("Manage Your Phone :");
                                         System.out.println("[1]Change Phone Number");
-                                        System.out.println("[2]Change Packgate");
+                                        System.out.println("[2]Change Package");
                                         System.out.println("[0]Back");
                                         phoneInp = sc.nextInt();
                                         while (phoneInp < 0 || phoneInp > 2) {
@@ -526,6 +622,7 @@ public class UserkeyList implements Serializable {
                                                 case 1:
                                                     System.out.println("Enter new Phone number");
                                                     String newPhoneNumber = sc.nextLine();
+                                                    prevState = key.get(mUser - 1).ReadData().phone.getPhoneNumber();
                                                     for (int i = 0; i < key.size(); i++) {
                                                         if (key.get(i).ReadData().phone.getPhoneNumber().equals(newPhoneNumber)) {
                                                             System.out.println("This Number is Being Used pls,Enter Again");
@@ -533,11 +630,13 @@ public class UserkeyList implements Serializable {
                                                             i = 0;
                                                         }
                                                     }
+                                                    this.addLogs("User : " + (mUser - 1) + " Change phone number", prevState, newPhoneNumber);
                                                     cofigData.phone.setPhoneNumber(newPhoneNumber);
                                                     break;
                                                 case 2:
                                                     System.out.println("Test");
                                                     System.out.println("Enter new price");
+                                                    String t1 = cofigData.phone.getPrice(), t2 = cofigData.phone.getInternet(), t3 = cofigData.phone.getCallingTime();
                                                     sc.nextLine();
                                                     String tmpPrice = sc.nextLine();
                                                     System.out.println("Enter new internet");
@@ -550,6 +649,9 @@ public class UserkeyList implements Serializable {
                                                     DateFormat dateformat = new SimpleDateFormat("dd MM Y");
                                                     String dateNowS = dateformat.format(dateNow);
                                                     cofigData.phone.changePackage(tmpPrice, dateNowS, tmpInternet, tmpCallingTime);
+                                                    this.addLogs("User : " + (mUser - 1) + " Change package",
+                                                            "price:" + t1 + ",internet:" + t2 + ",callingTime:" + t3,
+                                                            "price:" + tmpPrice + ",internet:" + tmpInternet + ",callingTime:" + tmpCallingTime);
                                                     break;
 
                                             }
@@ -558,13 +660,15 @@ public class UserkeyList implements Serializable {
 
 
                                     break;
-				    
-				case 11:
-					String tempBloodGroup;
-					System.out.println("Enter New Blood Group");
-					tempBloodGroup = sc.nextLine();
-					cofigData.setGroupLaed(tempBloodGroup);
-					break;
+
+                                case 11:
+                                    String tempBloodGroup;
+                                    System.out.println("Enter New Blood Group");
+                                    prevState = cofigData.getGroupLaed();
+                                    tempBloodGroup = sc.nextLine();
+                                    cofigData.setGroupLaed(tempBloodGroup);
+                                    this.addLogs("User : " + (mUser - 1) + " Change blood group", prevState, tempBloodGroup);
+                                    break;
 
                             }
                             key.get(mUser - 1).WriteData(cofigData);
@@ -604,6 +708,7 @@ public class UserkeyList implements Serializable {
                             inp = sc.nextInt();
                         }
 
+                        this.addLogs("Delete Account", "id:" + key.get(inp - 1).getId() + ",password:" + key.get(inp - 1).getPassword() + ",dataPath:" + key.get(inp - 1).getDataPath());
                         this.delete(key.get(inp - 1).getId());
                         inp = 99;
                         break;
@@ -612,10 +717,14 @@ public class UserkeyList implements Serializable {
                         System.out.println("it's not thing to delete");
                     inp = 99;
                     break;
+
+                case 9:
+                    System.out.println("******************");
+                    this.SHOWADMINLOGS();
+                    inp = 99;
+                    break;
             }
-
         }
-
     }
 }
 

@@ -5,56 +5,62 @@
  */
 package database;
 /**
- *
  * @author admin
- */ 
+ */
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 /**
- *
  * @author arthris
  */
 public class adminLog implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private Date timeS;
-	private String detailS;
+    private static final long serialVersionUID = 1L;
+    private Date timeS;
+    private String detailS;
+    private String head;
 
-	private static ArrayList<adminLog> logList = new ArrayList<>();
+    public adminLog() {
+        this(new Date(), "", "");
+    }
 
-	public static ArrayList<adminLog> getLogList() {
-		return logList;
-                
-	}
-	
-	public adminLog(Date time, String detail) {
-		this.timeS = time;
-		this.detailS = detail;
-                
-	}
-	
+    public String getDetailString() {
+        return detailS;
+    }
 
-	public static void add(adminLog e) {
-		logList.add(e);
-                
-	}
-        
-        public ArrayList<adminLog> getLog(){
-            return this.logList;
-            
-        }
-        
-        public void setLog(ArrayList<adminLog> inp){
-            this.logList = inp;
-            
-            
-        }
-	
-	public String toString() {
-		return this.timeS + " " + this.detailS;
-	}
-	
-	
+    public String getDateString() {
+        DateFormat t = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        return t.format(this.timeS);
+    }
+
+    public adminLog(Date time, String head, String detail) {
+        this.timeS = time;
+        this.detailS = detail;
+        this.head = head;
+
+    }
+
+    public void setString(String detailS) {
+        this.detailS = detailS;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
+    }
+
+    @Override
+    public String toString() {
+        return "adminLog{" +
+                "timeS=" + timeS +
+                ", detailS='" + detailS + '\'' +
+                ", head='" + head + '\'' +
+                '}';
+    }
 }
 
