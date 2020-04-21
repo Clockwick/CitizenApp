@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class UserkeyList implements Serializable {
 
@@ -64,6 +65,14 @@ public class UserkeyList implements Serializable {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Id :");
         String id = scanner.nextLine();
+//        System.out.println(id.matches("[0-9]+"));
+//        System.out.println(id.matches("^[a-zA-Z]*$"));
+//        System.out.println(id.length()==13);
+        while( !id.matches("[0-9]+") || id.length()!=13){
+            System.out.println("id must contain only number and have lenght of 13 :");
+            id = scanner.nextLine();
+        }
+        
         int i = 0;
         while (i < key.size()) {
             for (i = 0; i < key.size(); i++) {
@@ -82,9 +91,18 @@ public class UserkeyList implements Serializable {
 
         System.out.println("Enter Name: ");
         String name = scanner.nextLine();
+        while(!name.matches("^[a-zA-Z]*$")){
+            System.out.println("name must contain only alphabets");
+            name = scanner.nextLine();
+        }
+        
         System.out.println("Enter Surname: ");
         String surname = scanner.nextLine();
-
+        while(!surname.matches("^[a-zA-Z]*$")){
+            System.out.println("surname must contain only alphabets");
+            surname = scanner.nextLine();
+        }
+        
         System.out.println("Enter Gender: [M,F,O]");
         String gender = scanner.nextLine();
         while (!(gender.equals("M") || gender.equals("m") || gender.equals("F") || gender.equals("f") || gender.equals("O") || gender.equals("o"))) {
@@ -146,7 +164,10 @@ public class UserkeyList implements Serializable {
         address = scanner.nextLine();
         System.out.println("Enter phoneNumber");
         String phoneNumber = scanner.nextLine();
-
+            while(!phoneNumber.matches("[0-9]+") || phoneNumber.length()!=10){
+            System.out.println("phonenumber must contain only number and have a lenght of 10 :");
+            phoneNumber = scanner.nextLine();
+        }
 
         Date isDate = new Date();
         Date expDate = new Date();
@@ -173,7 +194,7 @@ public class UserkeyList implements Serializable {
         }
         if (id.equals("admin") && password.equals("admin"))
             this.adminMode();
-        System.out.println("UserNotFound");
+        System.out.println("UserNotFound/AdminModeEnded");
         return new UserData();
     }
 
@@ -209,7 +230,7 @@ public class UserkeyList implements Serializable {
         int inp = 99;
         int stage = 99;
 
-        while (stage == 99 || inp != 0) {
+        while (inp != 0) {
             stage = inp;
 
             switch (stage) {
@@ -223,6 +244,7 @@ public class UserkeyList implements Serializable {
                         try {
                             System.out.println("Enter The Number");
                             inp = sc.nextInt();
+                            stage = inp;
                         } catch (Exception ex) {
                             System.exit(0);
                             break;
@@ -243,10 +265,15 @@ public class UserkeyList implements Serializable {
                             System.out.print("\nChoose user [UserNumber] or [0]to go back : ");
 
                             mUser = sc.nextInt();
-                            while (mUser < 1 || mUser > key.size()) {
+                            while (mUser < 0 || mUser > key.size()) {
                                 System.out.println("Enter the number in range of the array : ");
                                 inp = sc.nextInt();
                             }
+                            if(inp == 0){
+                                stage = 99;
+                                break;
+                            }
+                                
                         } else {
                             mUser = 1;
                         }
